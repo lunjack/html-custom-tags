@@ -1,0 +1,39 @@
+{
+	"scopeName": "text.html.custom-tag",
+	"injectionSelector": "L:text.html",
+	"patterns": [
+		{
+			"name": "custom-tag",
+			"match": "(\\[)([!~])([^\\]]+)(\\])",
+			"captures": {
+				"1": {
+					"name": "custom-tag.bracket.open"
+				},
+				"2": {
+					"name": "custom-tag.flag"
+				},
+				"3": {
+					"name": "custom-tag.name"
+				},
+				"4": {
+					"name": "custom-tag.bracket.close"
+				}
+			}
+		},
+		{
+			"name": "custom.quoted-text",
+			"match": "(['\"])([^'\"]*?)(\\1)",
+			"captures": {
+				"1": {
+					"name": "custom.punctuation.definition.string.html"
+				},
+				"2": {
+					"name": "custom.string.quoted.html"
+				},
+				"3": {
+					"name": "custom.punctuation.definition.string.html"
+				}
+			}
+		}
+	]
+}

@@ -1,0 +1,165 @@
+{
+  "name": "html-custom-tags",
+  "displayName": "HTML Custom Tags Highlighter",
+  "description": "Syntax highlighting for custom [!tag][~tag] in HTML files with enhanced bracket coloring. Supports tag navigation, statistics and customization.",
+  "version": "1.0.128",
+  "publisher": "lunjack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lunjack/html-custom-tags.git"
+  },
+  "homepage": "https://github.com/lunjack/html-custom-tags#readme",
+  "bugs": {
+    "url": "https://github.com/lunjack/html-custom-tags/issues"
+  },
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters",
+    "Formatters"
+  ],
+  "keywords": [
+    "html",
+    "custom tags",
+    "syntax highlighter",
+    "bracket coloring",
+    "tag navigation",
+    "template tags",
+    "web development"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "HTML Custom Tags Highlighter",
+      "properties": {
+        "html-custom-tags.outerBracketColor": {
+          "scope": "resource",
+          "type": "string",
+          "default": "#8d7272",
+          "description": "设置最外层大括号的颜色（十六进制颜色代码）"
+        },
+        "html-custom-tags.enableTagNavigation": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用标签导航功能"
+        },
+        "html-custom-tags.showTagCount": {
+          "type": "boolean",
+          "default": true,
+          "description": "在状态栏显示标签统计"
+        }
+      }
+    },
+    "languages": [
+      {
+        "id": "html",
+        "extensions": [
+          ".html"
+        ],
+        "aliases": [
+          "HTML with Custom Tags"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "scopeName": "text.html.custom-tag",
+        "path": "./syntaxes/html-custom.tmLanguage.json",
+        "injectTo": [
+          "text.html"
+        ],
+        "embeddedLanguages": {
+          "text.html.custom-tag": "html"
+        }
+      }
+    ],
+    "themes": [
+      {
+        "label": "Custom Tags Theme",
+        "uiTheme": "vs-dark",
+        "path": "./themes/custom-tags-color-theme.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "html-custom-tags.copyAllTags",
+        "title": "复制所有标签",
+        "category": "HTML Custom Tags"
+      },
+      {
+        "command": "html-custom-tags.jumpToTag",
+        "title": "跳转到标签",
+        "category": "HTML Custom Tags"
+      },
+      {
+        "command": "html-custom-tags.showTagDetails",
+        "title": "显示标签统计",
+        "category": "HTML Custom Tags"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "html-custom-tags.copyAllTags",
+          "when": "view == html-custom-tags-view && showCustomTagsView",
+          "group": "navigation",
+          "icon": "$(copy)"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "html-custom-tags.showTagDetails",
+          "when": "view == html-custom-tags-view && viewItem != undefined",
+          "group": "inline",
+          "args": [
+            "${selectedItem}"
+          ]
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "html-custom-tags-activity",
+          "title": "HTML Custom Tags",
+          "icon": "icons/custom-tag.png"
+        }
+      ]
+    },
+    "views": {
+      "html-custom-tags-activity": [
+        {
+          "id": "html-custom-tags-view",
+          "name": "模板标签",
+          "icon": "icons/tag-view-icon.png",
+          "contextualTitle": "模板标签"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "echo '编译完成'",
+    "watch": "echo '监听模式中...'"
+  },
+  "icon": "icons/extension-icon.png",
+  "galleryBanner": {
+    "color": "#4285F4",
+    "theme": "dark"
+  },
+  "badges": [
+    {
+      "url": "https://img.shields.io/visual-studio-marketplace/v/lunjack.html-custom-tags?color=blue&label=VS%20Marketplace",
+      "href": "https://marketplace.visualstudio.com/items?itemName=lunjack.html-custom-tags",
+      "description": "Version"
+    },
+    {
+      "url": "https://img.shields.io/visual-studio-marketplace/i/lunjack.html-custom-tags?label=Installs",
+      "href": "https://marketplace.visualstudio.com/items?itemName=lunjack.html-custom-tags",
+      "description": "Installs"
+    }
+  ]
+}

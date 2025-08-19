@@ -1,0 +1,6 @@
+*.vsix
+.env
+publish.ps1
+/publish.ps1
+/secret_folder/
+*.key

@@ -1,0 +1,1223 @@
+{
+    "$schema": "vscode://schemas/color-theme",
+    "name": "Enhanced Custom Tags Theme",
+    "type": "dark",
+    "semanticHighlighting": true, // 限定作用域范围
+    "colors": {},
+    "tokenColors": [
+        // =====================================
+        // HTML 相关规则
+        // =====================================
+        {
+            "scope": [
+                "entity.name.tag.html", // 普通标签如 <div>
+                "meta.tag.structure.html" // 结构标签如 <html>, <head>
+            ],
+            "settings": {
+                "foreground": "#569CD6" // VS Code 默认的蓝色
+            }
+        },
+        {
+            "name": "HTML - 标签属性",
+            "scope": [
+                "entity.other.attribute-name.html" // 属性名 class, id 等
+            ],
+            "settings": {
+                "foreground": "#0E639C" // 暗蓝色，VS Code 默认属性色
+            }
+        },
+        // 自定义HTML文件全局引号和文件外引号
+        {
+            "name": "HTML全局 - 自定义引号规则",
+            "scope": [
+                "custom.punctuation.definition.string.html",
+                "punctuation.definition.string.begin.js", // HTML文件外部js开始引号
+                "punctuation.definition.string.end.js", // HTML文件外部js结束引号
+                "punctuation.definition.string.begin.css", // HTML文件外部css开始引号
+                "punctuation.definition.string.end.css", // HTML文件外部css结束引号
+                "punctuation.support.type.property-name.begin.json", // json
+                "punctuation.support.type.property-name.end.json", // json
+            ],
+            "settings": {
+                "foreground": "#7a6e17", // 天蓝色
+                "fontStyle": "italic" // 斜体样式
+            }
+        },
+        // 自定义HTML文件全局引号和文件外引号内容
+        {
+            "name": "HTML全局 - 自定义引号规则内容",
+            "scope": [
+                "custom.string.quoted.html",
+                "string.quoted.single.js", // HTML文件外部js单引号
+                "string.quoted.double.js", // HTML文件外部js双引号
+                "string.quoted.single.js", // HTML文件外部css单引号
+                "string.quoted.double.js", // HTML文件外部css双引号
+            ],
+            "settings": {
+                "foreground": "#006400", // 深绿色
+                "fontStyle": ""
+            }
+        },
+        {
+            "scope": [
+                "comment.block.html", // <!-- 注释 -->
+                "comment.line.html" // 行内注释
+            ],
+            "settings": {
+                "foreground": "#6A9955", // 绿色，VS Code 默认注释色
+                "fontStyle": "italic" // 斜体增强可读性
+            }
+        },
+        {
+            "scope": [
+                "text.html.derivative", // HTML 文档主体文本
+                "meta.tag.text.html", // 标签内的文本内容
+            ],
+            "settings": {
+                "foreground": "#7d7373" // 浅灰色，默认文本颜色
+            }
+        },
+        // =====================================
+        // CSS 相关规则（在 <style> 标签内）
+        // =====================================
+        {
+            "scope": [
+                "meta.selector.css", // CSS 选择器
+                "entity.name.tag.css", // 标签选择器
+                "meta.property-name.css" // 标签名
+            ],
+            "settings": {
+                "foreground": "#2d5bd9" // 天蓝色
+            }
+        },
+        {
+            "scope": [
+                "entity.other.attribute-name.class.css", // 类选择器
+                "punctuation.definition.constant.css" // #号
+            ],
+            "settings": {
+                "foreground": "#289a83" // 青色
+            }
+        },
+        {
+            "scope": "entity.other.attribute-name.id.css", // ID 选择器
+            "settings": {
+                "foreground": "#7066a8" // 紫蓝色
+            }
+        },
+        {
+            "scope": [
+                "support.type.property-name.css", // color, font-size,font-family 等
+                "support.constant.font-name.css" // sans-serif等
+            ],
+            "settings": {
+                "foreground": "#265f8e" // 天蓝色
+            }
+        },
+        {
+            "scope": [
+                "meta.property-value.css", // 默认值
+            ],
+            "settings": {
+                "foreground": "#784ab3" // 紫蓝色
+            }
+        },
+        {
+            "scope": [
+                "constant.numeric.css", // 16px, 100% 等
+                "keyword.unit.css" // px, em, rem 等单位
+            ],
+            "settings": {
+                "foreground": "#4ba31c" // 浅绿色
+            }
+        },
+        {
+            "scope": [
+                "constant.other.color.rgb-value.hex.css", // 16进制色
+                "support.function.misc.css", // rgb(255,255,255)函数名
+                "support.constant.color.w3c-standard-color-name.css", // 颜色名
+                "support.constant.color.w3c-extended-color-name.css"
+            ],
+            "settings": {
+                "foreground": "#46560f" // 黄绿色
+            }
+        },
+        {
+            "scope": "string.quoted.css", // 'Arial', "sans-serif" 等
+            "settings": {
+                "foreground": "#CE9178" // 棕色，VS Code 默认字符串色
+            }
+        },
+        // 媒体查询 关键字 和其它关键字
+        {
+            "scope": [
+                "keyword.control.at-rule.media.css",
+                "keyword.operator.gradient.css", // gradient关键字
+                "meta.at-rule.media.body.css", //内容
+            ],
+            "settings": {
+                "foreground": "#7f3f30", //咖啡色
+                "fontStyle": "bold",
+            }
+        },
+        // 媒体查询 条件
+        {
+            "scope": "meta.at-rule.media.header.css",
+            "settings": {
+                "foreground": "#569CD6",
+            }
+        },
+        // 媒体查询 断点属性名
+        {
+            "scope": [
+                "support.type.property-name.media.css",
+            ],
+            "settings": {
+                "foreground": "#FFD700", // 黄金色
+                "fontStyle": "italic",
+            }
+        },
+        // CSS 变量
+        {
+            "name": "CSS 变量声明和使用",
+            "scope": [
+                "variable.argument.css",
+                "variable.argument.scss",
+                "variable.argument.less",
+                "variable.css"
+            ],
+            "settings": {
+                "foreground": "#ae7530",
+                "fontStyle": "bold"
+            }
+        },
+        // CSS 函数
+        {
+            "name": "CSS 变量函数",
+            "scope": [
+                "support.function.url.css", // URL
+                "support.function.var.css", // var
+                "support.function.gradient.css", // gradient
+                "meta.function.variable.css"
+            ],
+            "settings": {
+                "foreground": "#9370DB",
+                "fontStyle": ""
+            }
+        },
+        // 注释规则
+        {
+            "scope": [
+                "comment.block.css", // /* CSS 块注释 */
+                "comment.line.css" // CSS 行注释（虽然标准不支持，但预处理器可能使用）
+            ],
+            "settings": {
+                "foreground": "#6A9955", // 绿色，保持与HTML/JS注释一致
+                "fontStyle": "italic" // 斜体增强可读性
+            }
+        },
+        // =====================================
+        // JavaScript 相关规则（在 <script> 标签内）
+        // =====================================
+        // JavaScript 关键字（扩展范围）
+        {
+            "name": "JavaScript 关键字",
+            "scope": [
+                "keyword.control.conditional.js", //if,else
+                "keyword.control.trycatch.js", // try, catch, finally
+                "keyword.control.switch.js", // switch, case, default
+                "keyword.control.import.js", // import, export
+                "storage.type.js", // var, let, const等
+                "storage.modifier.async.js", // async,
+                "storage.modifier.js", // static
+                "keyword.operator.new.js", // new
+                "keyword.operator.expression.typeof.js", // typeof
+                "keyword.operator.expression.instanceof.js", // instanceof
+                "keyword.operator.expression.in.js", // in
+                "keyword.operator.expression.of.js", // of
+                "keyword.operator.assignment.compound.js", // +=,-=,等
+                "keyword.operator.assignment.js", // =
+            ],
+            "settings": {
+                "foreground": "#19aa5a", // 绿色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // 关键字 - return/await/yield和模块
+        {
+            "name": "关键字 - return/await等",
+            "scope": [
+                "keyword.control.flow.js",
+                "support.type.object.module.js" // 模块属性
+            ],
+            "settings": {
+                "foreground": "#c6408c",
+                "fontStyle": "italic"
+            }
+        },
+        // 关键字 - break/continue/for/while
+        {
+            "name": "关键字 - break/continue/for/while",
+            "scope": [
+                "keyword.control.loop.js"
+            ],
+            "settings": {
+                "foreground": "#ad3177",
+                "fontStyle": "italic"
+            }
+        },
+        // 类和函数关键字
+        {
+            "name": "类和函数关键字",
+            "scope": [
+                "storage.type.function.js", // function 关键字
+                "storage.type.class.js", // class 关键字
+            ],
+            "settings": {
+                "foreground": "#C586C0", // 紫色
+                "fontStyle": "bold" // 粗体增强可读性
+            }
+        },
+        // 类成员
+        {
+            "name": "类成员",
+            "scope": [
+                "entity.name.type.class.js", // 类名 (MyClass)
+                "entity.name.function.method.js", // 类方法
+                "variable.other.property.js", // 末端对象
+            ],
+            "settings": {
+                "foreground": "#9b5b6d", // 淡紫色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // 函数名
+        {
+            "name": "函数声明",
+            "scope": [
+                "entity.name.function.js", // 普通函数名
+                "entity.name.function.arrow.js" // 箭头函数名
+            ],
+            "settings": {
+                "foreground": "#a9a93a", // 亮黄色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // 函数参数
+        {
+            "name": "函数参数",
+            "scope": [
+                "variable.parameter.js", // 函数参数
+            ],
+            "settings": {
+                "foreground": "#4d4d0e", // 暗黄色
+                "fontStyle": "bold"
+            }
+        },
+        // 构造函数
+        {
+            "name": "构造函数",
+            "scope": "entity.name.function.constructor.js", // constructor
+            "settings": {
+                "foreground": "#31a58e", // 中青色
+                "fontStyle": "bold" // 粗体
+            }
+        },
+        // 内置方法和起点对象
+        {
+            "name": "JavaScript 内置方法和对象",
+            "scope": [
+                "variable.other.object.js", // 起点对象:Object, Array, Math 等
+                "support.class.builtin.js", // String, Number, Boolean
+                "support.function.js", // console.log, setTimeout 等
+                "support.function.builtin.js", // parseInt, parseFloat
+                "support.type.object.js", // Map, Set 等
+                "variable.language.super.js", // super
+            ],
+            "settings": {
+                "foreground": "#4EC9B0", // 青色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // 继续对象
+        {
+            "name": "继续对象",
+            "scope": [
+                "variable.other.object.property.js", // ... object?.
+            ],
+            "settings": {
+                "foreground": "#5fa97a", // 淡绿色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // ObjectName 对象名
+        {
+            "name": "ObjectName 对象名",
+            "scope": [
+                "meta.object-literal.key.js",
+            ],
+            "settings": {
+                "foreground": "#79759c", // 蓝色
+                "fontStyle": "bold"
+            }
+        },
+        // Object JSON常量
+        {
+            "name": "JSON常量对象",
+            "scope": [
+                "variable.other.constant.object.js",
+            ],
+            "settings": {
+                "foreground": "#79759c", // 蓝色
+                "fontStyle": "bold"
+            }
+        },
+        // 常量
+        {
+            "name": "常量",
+            "scope": [
+                "variable.other.constant.js", // 常量
+                "variable.other.constant.property.js", // 对象常量属性
+            ],
+            "settings": {
+                "foreground": "#7a65cb", // 蓝紫色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // 特殊普通变量(和自定义扩展标签名保持一致)
+        {
+            "name": "特殊普通变量",
+            "scope": [
+                "variable.other.readwrite.js", // 普通变量
+            ],
+            "settings": {
+                "foreground": "#9c5a0a", // 锈棕色
+                "fontStyle": "bold" // 粗体增强可读性
+            }
+        },
+        // this 关键字 和 布尔值(true)
+        {
+            "name": "this关键字和true",
+            "scope": [
+                "variable.language.this.js", // this
+                "constant.language.boolean.true.js", // true
+            ],
+            "settings": {
+                "foreground": "#569CD6", // 蓝色
+                "fontStyle": "italic" // 斜体
+            }
+        },
+        // 元素特性
+        {
+            "name": "元素特性",
+            "scope": [
+                "support.variable.property.js", // length等
+            ],
+            "settings": {
+                "foreground": "#1ba46b", // 亮绿色
+                "fontStyle": "bold"
+            }
+        },
+        // 布尔值(false),空,未知等
+        {
+            "name": "false/null/undefined",
+            "scope": [
+                "constant.language.boolean.false.js", // false
+                "constant.language.null.js", // null
+                "constant.language.undefined.js" // undefined
+            ],
+            "settings": {
+                "foreground": "#3c4b36", // 暗绿色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // 数字
+        {
+            "name": "数值",
+            "scope": [
+                "constant.numeric.decimal.js", // 数字
+            ],
+            "settings": {
+                "foreground": "#4f9f24", // 浅绿色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // 运算符（增强)
+        {
+            "name": "运算符",
+            "scope": [
+                "keyword.operator.arithmetic.js", // + - * /
+                "keyword.operator.increment.js", // ++
+                "keyword.operator.decrement.js", // --
+                "keyword.operator.comparison.js", // == != ===
+                "keyword.operator.relational.js", // > <
+                "keyword.operator.ternary.js", // ? :
+                "keyword.operator.spread.js" // 展开运算符
+            ],
+            "settings": {
+                "foreground": "#84d684", // 亮绿色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // 特殊运算符（和扩展标志保持一致)
+        {
+            "name": "特殊运算符",
+            "scope": [
+                "keyword.operator.logical.js", // && || !
+                "keyword.operator.bitwise.js", // & | ^ ~
+                "punctuation.accessor.optional.js", // ?.可选链运算符
+            ],
+            "settings": {
+                "foreground": "#C792EA", // 紫色，突出标志
+                "fontStyle": "bold"
+            }
+        },
+        // 链接符 .
+        {
+            "name": "链接符 点",
+            "scope": [
+                "punctuation.accessor.js",
+            ],
+            "settings": {
+                "foreground": "#0d925b", // 淡绿色
+                "fontStyle": "bold"
+            }
+        },
+        // 模板表达式
+        {
+            "name": "模板字符串和标志",
+            "scope": [
+                "string.template.js", // 模板字符串
+                "punctuation.definition.string.template.begin.js", // `
+                "punctuation.definition.string.template.end.js" // `
+            ],
+            "settings": {
+                "foreground": "#236e2e", // 浅绿色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // 模板变量标志
+        {
+            "name": "模板符号变量标志",
+            "scope": [
+                "punctuation.definition.template-expression.begin.js", // 模板表达式 ${
+                "punctuation.definition.template-expression.end.js" // 模板表达式 }
+            ],
+            "settings": {
+                "foreground": "#0e5b3b", // 深绿色
+                "fontStyle": "" // 常规样式
+            }
+        },
+        // promise 请求
+        {
+            "name": "promise 请求",
+            "scope": [
+                "support.class.promise.js",
+            ],
+            "settings": {
+                "foreground": "#3483c4", // 蓝色
+                "fontStyle": "italic" // 斜体
+            }
+        },
+        // 删除关键字
+        {
+            "name": "删除关键字",
+            "scope": [
+                "keyword.operator.expression.delete.js",
+            ],
+            "settings": {
+                "foreground": "#bb2626", // 红色
+                "fontStyle": "bold"
+            }
+        },
+        // 注释（合并文档注释作用域）
+        {
+            "name": "JavaScript 注释",
+            "scope": [
+                "comment.block.js", // /* 块注释 */
+                "comment.line.double-slash.js", // // 行注释
+                "punctuation.definition.comment.js" // 注释符号
+            ],
+            "settings": {
+                "foreground": "#6A9955", // 绿色
+                "fontStyle": "italic" // 斜体
+            }
+        },
+        // =====================================
+        // 自定义标签 [!tag]和[~tag]规则
+        // =====================================
+        {
+            "scope": [
+                "custom-tag.bracket.open", //  [
+                "custom-tag.bracket.close" //  ]
+            ],
+            "settings": {
+                "foreground": "#8d7272", // 紫灰色，突出括号
+                "fontStyle": "bold" // 粗体增强可见性
+            }
+        },
+        {
+            "scope": "custom-tag.flag", // !和~
+            "settings": {
+                "foreground": "#C792EA", // 紫色，突出标志
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "scope": "custom-tag.name", // tag
+            "settings": {
+                "foreground": "#9c5a0a", // 锈棕色，突出标签名
+                "fontStyle": "bold" // 粗体增强可读性
+            }
+        },
+        // =====================================
+        // JSON通用规则
+        // =====================================
+        {
+            "name": "JSON 键名",
+            "scope": "support.type.property-name.json",
+            "settings": {
+                "foreground": "#2a8ec4" // 键名 -淡蓝色
+            }
+        },
+        {
+            "name": "JSON 键值-字符串",
+            "scope": "string.quoted.double.json",
+            "settings": {
+                "foreground": "#006400" // 字符串 -深绿色
+            }
+        },
+        {
+            "name": "JSON 键值-数字",
+            "scope": "constant.numeric.json",
+            "settings": {
+                "foreground": "#54a02b" // 数字值 -绿色
+            }
+        },
+        // =====================================
+        // 正则表达式语法高亮规则
+        // =====================================
+        {
+            // 基础正则表达式规则
+            "name": "regexp 正则主体",
+            "scope": [
+                "string.regexp.js", // JavaScript正则字符串
+                "constant.character.escape.backslash.regexp" // 转义字符 \
+            ],
+            "settings": {
+                "foreground": "#2ba972" // 淡绿色
+            }
+        },
+        {
+            // 字符类规则（如 [a-z,...]）
+            "name": "regexp 字符类",
+            "scope": [
+                "constant.other.character-class.set.regexp", // 字符类内容
+                "constant.character.numeric.regexp" //字符数字混合
+            ],
+            "settings": {
+                "foreground": "#569cd6" // 亮蓝色
+            }
+        },
+        {
+            // 字方括号符号 []
+            "name": "regexp 方括号符号",
+            "scope": [
+                "punctuation.definition.character-class.regexp", // 方括号符号
+            ],
+            "settings": {
+                "foreground": "#d6ab56" // 淡橘色
+            }
+        },
+        {
+            // 减号符号 -
+            "name": "regexp -",
+            "scope": [
+                "constant.other.character-class.range.regexp",
+            ],
+            "settings": {
+                "foreground": "#b6d656" // 亮黄色
+            }
+        },
+        {
+            // 减号set -
+            "name": "regexp set-",
+            "scope": [
+                "constant.other.character-class.set.regexp",
+            ],
+            "settings": {
+                "foreground": "#4c5c1c" // 暗绿色
+            }
+        },
+        {
+            // 量词规则（如 * + ? {n}）
+            "name": "regexp 量词",
+            "scope": [
+                "keyword.operator.quantifier.regexp", // 量词符号
+                "constant.numeric.regexp" // 精确量词数字
+            ],
+            "settings": {
+                "foreground": "#d731c9" // 紫色
+            }
+        },
+        {
+            // 分组规则（如 (?:...)）
+            "name": "regexp 分组",
+            "scope": [
+                "meta.group.regexp", // 分组主体
+                "punctuation.definition.group.regexp" // 圆括号符号
+            ],
+            "settings": {
+                "foreground": "#dcdcaa" // 浅黄色
+            }
+        },
+        {
+            // 锚点规则（如 ^ $ \b）
+            "name": "regexp 锚点",
+            "scope": [
+                "keyword.control.anchor.regexp", // 位置锚点
+                "keyword.control.word-boundary.regexp" // 单词边界
+            ],
+            "settings": {
+                "foreground": "#4ec9b0" // 青绿色
+            }
+        },
+        {
+            // 特殊字符类（如 \d \s \w）
+            "name": "regexp 预定义字符类",
+            "scope": [
+                "constant.other.character-class.regexp"
+            ],
+            "settings": {
+                "foreground": "#9cdcfe" // 浅蓝色
+            }
+        },
+        {
+            // 反向引用（如 \1）
+            "name": "regexp 反向引用",
+            "scope": [
+                "keyword.other.back-reference.regexp"
+            ],
+            "settings": {
+                "foreground": "#ce9178" // 橙色
+            }
+        },
+        // =====================================
+        // 通用语法规则（覆盖所有文件类型）
+        // =====================================
+        // 控制流元素
+        {
+            "name": "通用控制流元素",
+            "scope": [
+                "keyword.control.conditional", // if/else
+                "keyword.control.loop", // for/while
+                "keyword.control.trycatch", // try/catch
+                "keyword.control.switch", // switch/case
+                "keyword.other.DML.sql", // SQL关键字
+                "keyword.other.directive.dockerfile", // Dockerfile指令
+                "keyword.control.powershell", // PowerShell 脚本参数定义
+                "keyword.control.flow.python", // Python关键字
+                "keyword.control.flow.return.cs", // cs return
+                "keyword.type.void.cs", // cs void
+                "keyword.control.exception.try.cs", // cs try
+                "keyword.control.exception.catch.cs", // cs catch
+                "keyword.control.flow.throw.cs", // cs ...
+                "keyword.control.if.php", // php if
+                "keyword.control.die.php", // php if
+                "keyword.control.else.php", // php else
+            ],
+            "settings": {
+                "foreground": "#1b9653", // 绿色（与JS关键字一致）
+                "fontStyle": "bold"
+            }
+        },
+        // 类型声明
+        {
+            "name": "通用类型声明",
+            "scope": [
+                "storage.type", // var/let/const
+                "storage.type.class", // class
+                "storage.type.function", // function
+                "storage.type.interface", // interface
+                "storage.type.enum", // enum
+                "meta.tag.preprocessor.xml", // XML 声明
+                "storage.type.annotation.java", // Java注解
+                "keyword.operator.class.php", // php ->
+                "log.date", // log 时间
+                "variable.other.object.property.java", // java class
+            ],
+            "settings": {
+                "foreground": "#c157b8", // 紫色（与JS类/函数关键字一致）
+                "fontStyle": "bold"
+            }
+        },
+        // 访问修饰符
+        {
+            "name": "通用访问修饰符",
+            "scope": [
+                "storage.modifier", // public/private
+                "storage.modifier.async", // async
+                "storage.modifier.static", // static
+                "storage.modifier.pointer", // C/C++指针
+                "storage.modifier.package.java", // Java包
+                "source.python", // python 来源
+            ],
+            "settings": {
+                "foreground": "#4EC9B0", // 青色（与JS内置方法一致）
+                "fontStyle": ""
+            }
+        },
+        // 装饰器
+        {
+            "name": "通用装饰器",
+            "scope": [
+                "meta.decorator.python", // Python 装饰器
+                "meta.paragraph.markdown", // markdown 元数据段落
+                "keyword.control.context.using.cs", // cs using
+                "keyword.control.context.lock.cs", // cs lock
+                "keyword.control.as.ts", // ts as
+                "keyword.control.default.ts", // ts ...
+                "keyword.command.batchfile", // bat
+                "support.class.general.latex3.tex", // txt 点到冒号的内容
+            ],
+            "settings": {
+                "foreground": "#907790",
+                "fontStyle": "bold"
+            }
+        },
+        // 导入/导出
+        {
+            "name": "通用导入/导出",
+            "scope": [
+                "keyword.control.import", // import
+                "keyword.control.export", // export
+                "heading.1.markdown", // markdown (Change Log)
+                "keyword.other.directive.using.cs", // cs using
+                "keyword.other.import.java", // java
+            ],
+            "settings": {
+                "foreground": "#ad3177", // 粉紫色（与JS循环关键字一致）
+                "fontStyle": "italic"
+            }
+        },
+        // 类成员
+        {
+            "name": "通用类成员",
+            "scope": [
+                "entity.name.type.class", // 类名
+                "entity.name.function.method", // 方法名
+                "variable.other.property", // 属性
+                "support.class.php", // PHP类
+                "entity.name.type.namespace.cs", // cs
+                "entity.name.type.alias.ts", // ts
+            ],
+            "settings": {
+                "foreground": "#9b5b6d", // 淡紫色（与JS类成员一致）
+                "fontStyle": ""
+            }
+        },
+        // 函数声明
+        {
+            "name": "通用函数声明",
+            "scope": [
+                "entity.name.function", // 函数名
+                "entity.name.function.arrow", // 箭头函数
+                "entity.name.function.decorator.python", // Python 函数名
+                "keyword.operator.key.php", // php =>
+            ],
+            "settings": {
+                "foreground": "#a9a93a", // 亮黄色（与JS函数名一致）
+                "fontStyle": ""
+            }
+        },
+        // 函数参数
+        {
+            "name": "通用函数参数",
+            "scope": "variable.parameter",
+            "settings": {
+                "foreground": "#4d4d0e", // 暗黄色（与JS函数参数一致）
+                "fontStyle": "bold"
+            }
+        },
+        // 对象
+        {
+            "name": "通用对象",
+            "scope": [
+                "support.type.object", // Map/Set
+                "keyword.type.object.cs", // cs 
+                "keyword.control.statement.batchfile", // bat
+                "variable.other.object.java", // java
+            ],
+            "settings": {
+                "foreground": "#2bad2f", // 绿色
+                "fontStyle": ""
+            }
+        },
+        // 数据类型/链接
+        {
+            "name": "通用数据类型/链接",
+            "scope": [
+                "support.class.builtin", // String/Array
+                "markup.underline.link.markdown", // Markdown 链接
+                "entity.name.tag.namespace.xml", // XML命名空间
+                "keyword.type.string.cs", // cs  String
+                "keyword.type.int.cs", // cs  int
+                "keyword.type.long.cs", // cs  int
+                "keyword.type.bool.cs", // cs bool
+                "support.type.primitive.ts", // ts
+            ],
+            "settings": {
+                "foreground": "#2aa18a", // 青色（与JS内置对象一致）
+                "fontStyle": ""
+            }
+        },
+        // 内置函数
+        {
+            "name": "通用内置函数",
+            "scope": [
+                "support.function", // console.log
+                "support.function.builtin", // parseInt
+                "support.function.builtin.python", // Python 内置函数
+                "support.function.builtin.shell", // Shell命令
+                "support.function.sql" // SQL函数
+            ],
+            "settings": {
+                "foreground": "#409d8b", // 淡青色（与JS内置方法一致）
+                "fontStyle": ""
+            }
+        },
+        // 通用常量
+        {
+            "name": "通用常量",
+            "scope": [
+                "variable.other.constant", // 常量
+                "constant.language", // true/false/null
+                "meta.scriptblock.powershell", // powershell常量 如:UTF8
+                "source.powershell", // powershell
+            ],
+            "settings": {
+                "foreground": "#7a65cb", // 蓝紫色（与JS常量一致）
+                "fontStyle": ""
+            }
+        },
+        // 通用变量
+        {
+            "name": "通用变量",
+            "scope": [
+                "variable.other.readwrite",
+                "variable.other.normal.shell", // Shell变量
+                "variable.other.php", // PHP变量
+                "variable.other.definition.java", // java 变量名
+            ],
+            "settings": {
+                "foreground": "#82541c", // 锈棕色（与JS变量一致）
+                "fontStyle": "bold"
+            }
+        },
+        // 通用数字
+        {
+            "name": "通用数字",
+            "scope": "constant.numeric",
+            "settings": {
+                "foreground": "#4f9f24", // 浅绿色（与JS数字一致）
+                "fontStyle": ""
+            }
+        },
+        // 引号
+        {
+            "name": "通用引号",
+            "scope": [
+                "punctuation.definition.string",
+                "punctuation.definition.raw.markdown", // markdown
+            ],
+            "settings": {
+                "foreground": "#7a6e17", // 深黄色（与HTML引号一致）
+                "fontStyle": "italic"
+            }
+        },
+        // 引号内容字符串
+        {
+            "name": "通用引号内容字符串",
+            "scope": [
+                "string.quoted", // 引号内容
+                "markup.inline.raw.string.markdown", // markdown
+            ],
+            "settings": {
+                "foreground": "#006400", // 深绿色（与全局HTML一致）
+                "fontStyle": ""
+            }
+        },
+        // 常规字符串
+        {
+            "name": "通用常规字符串",
+            "scope": [
+                "text.tex.latex", // txt文本
+                "text.log", // log
+            ],
+            "settings": {
+                "foreground": "#276927", // 中绿
+                "fontStyle": ""
+            }
+        },
+        // 模板字符串
+        {
+            "name": "通用模板字符串",
+            "scope": [
+                "string.template", // 模板字符串
+                "variable.other.jsdoc"
+            ],
+            "settings": {
+                "foreground": "#236e2e", // 浅绿色（与jS模板一致）
+                "fontStyle": ""
+            }
+        },
+        // 操作符
+        {
+            "name": "通用操作符",
+            "scope": [
+                "keyword.operator.arithmetic", // + - * /
+                "keyword.operator.comparison", // == !=
+                "keyword.operator.logical", // && ||
+                "keyword.operator.assignment", // = +=
+                "punctuation.definition.list.begin.markdown", // markdown -
+                "keyword.other.special-method.batchfile", // bat off
+            ],
+            "settings": {
+                "foreground": "#84d684", // 亮绿色（与JS操作符一致）
+                "fontStyle": ""
+            }
+        },
+        // 特殊操作符
+        {
+            "name": "通用特殊操作符",
+            "scope": [
+                "keyword.operator.ternary", // ? :
+                "keyword.operator.spread", // ...
+                "punctuation.accessor.optional", // ?.
+                "keyword.operator.logical.python", // python not等
+                "keyword.operator.expression.new.cs", // cs new
+                "keyword.operator.conditional.question-mark.cs", // cs ?
+                "keyword.operator.conditional.colon.cs", // cs :
+                "keyword.other.new.php", // php new
+            ],
+            "settings": {
+                "foreground": "#C792EA", // 紫色（与JS特殊操作符一致）
+                "fontStyle": "bold"
+            }
+        },
+        // 点操作符/井号/艾它符/倒呐
+        {
+            "name": "通用点操作符",
+            "scope": [
+                "punctuation.accessor",
+                "punctuation.definition.heading.markdown", // markdown #
+                "punctuation.definition.block.tag.jsdoc", // 注释关键字 @
+                "punctuation.definition.variable.php", // php $
+                "keyword.operator.at.batchfile", // bat @
+                "punctuation.definition.annotation.java", // java @
+            ],
+            "settings": {
+                "foreground": "#0c794b", // 淡绿色（与JS点操作符一致）
+                "fontStyle": "bold"
+            }
+        },
+        // 标签/标题
+        {
+            "name": "通用标签与标题",
+            "scope": [
+                "entity.name.tag", // HTML标签
+                "markup.heading", // Markdown 标题
+                "entity.name.tag.yaml", // YAML键
+                "entity.name.anchor.yaml", // YAML锚点
+                "meta.scope.commit-title.git-commit", // Git提交标题
+                "string.other.link.title.markdown", // Markdown 标题
+                "text.html.markdown", // Markdown
+                "storage.type.class.jsdoc", // 标准注释标签名
+                "punctuation.section.embedded.begin.php", // php
+                "punctuation.section.embedded.end.php", // php
+            ],
+            "settings": {
+                "foreground": "#569CD6", // 蓝色（与HTML标签一致）
+                "fontStyle": ""
+            }
+        },
+        // 属性
+        {
+            "name": "通用属性",
+            "scope": [
+                "entity.name.type",
+                "entity.other.attribute-name",
+                "entity.name.type.instance.jsdoc",
+                "keyword.other.package.java", // java 包关键字"
+            ],
+            "settings": {
+                "foreground": "#0E639C", // 暗蓝色（与HTML属性一致）
+                "fontStyle": ""
+            }
+        },
+        // 标点
+        {
+            "name": "通用标点",
+            "scope": [
+                "punctuation.separator", // 逗号 ,/冒号 :
+                "punctuation.terminator", // 分号 ;
+                "punctuation.section.function.begin.python", // python :
+            ],
+            "settings": {
+                "foreground": "#808080", // 灰色
+                "fontStyle": ""
+            }
+        },
+        // 小括号
+        {
+            "name": "通用小括号",
+            "scope": [
+                "meta.brace.round", // ( )
+                "punctuation.definition.parameters.begin.js", // js起始小括号
+                "punctuation.definition.parameters.end.js", // js起始小括号
+                "punctuation.definition.metadata.markdown", // markdown
+                "punctuation.section.group.begin.powershell", // powershell
+                "punctuation.section.group.end.powershell", // powershell
+                "punctuation.definition.arguments.begin.python", // python
+                "punctuation.definition.arguments.end.python", // python
+                "punctuation.definition.arguments.begin.bracket.round.php", // php
+                "punctuation.definition.arguments.end.bracket.round.php", // php
+                "punctuation.definition.begin.bracket.round.php", // php
+                "punctuation.definition.end.bracket.round.php", // php
+                "punctuation.definition.parameters.begin.bracket.round.java", // java
+                "punctuation.definition.parameters.end.bracket.round.java", // java
+            ],
+            "settings": {
+                "foreground": "#11448d", // 天蓝色
+                "fontStyle": "bold"
+            }
+        },
+        // 中括号
+        {
+            "name": "通用中括号",
+            "scope": [
+                "meta.brace.square", // [ ]
+                "meta.brace.square.js", // js
+                "punctuation.section.bracket.begin.powershell", // powershell 开始
+                "punctuation.section.bracket.end.powershell", // powershell 结束
+                "punctuation.definition.link.title.begin.markdown", // markdown 开始
+                "punctuation.definition.link.title.end.markdown", // markdown 结束
+                "punctuation.definition.array.begin.json.comments", // json 开始 带注释
+                "punctuation.definition.array.end.json.comments", // json 结束 带注释
+                "punctuation.definition.array.begin.json", // json 开始
+                "punctuation.definition.array.end.json", // json 结束
+                "punctuation.definition.brackets.tex", // txt
+                "punctuation.definition.list.begin.python", // python
+                "punctuation.definition.list.end.python", // python
+                "punctuation.definition.optional-value.begin.bracket.square.jsdoc",
+                "punctuation.definition.optional-value.end.bracket.square.jsdoc",
+                "punctuation.section.array.begin.php", // php
+                "punctuation.section.array.end.php", // php
+            ],
+            "settings": {
+                "foreground": "#8d7272", // 紫灰色（与自定义标签括号一致）
+                "fontStyle": "bold"
+            }
+        },
+        // 大括号
+        {
+            "name": "通用大括号",
+            "scope": [
+                "meta.brace.curly", // { }
+                "meta.property-list.css",
+                "source.css",
+                "punctuation.definition.block.js", // js大括号
+                "punctuation.definition.dictionary.begin.json.comments", // json 开始
+                "punctuation.definition.dictionary.end.json.comments", // json 结束
+                "punctuation.definition.dictionary.begin.json", // json 开始
+                "punctuation.definition.dictionary.end.json", // json 结束
+                "punctuation.section.property-list.begin.bracket.curly.css", // css 开始
+                "punctuation.section.property-list.end.bracket.curly.css", // css 结束
+                "punctuation.section.braces.begin.powershell", // powershell
+                "punctuation.section.braces.end.powershell", // powershell
+                "punctuation.definition.dict.begin.python", // python
+                "punctuation.definition.dict.end.python", // python
+                "punctuation.definition.bracket.curly.begin.jsdoc",
+                "punctuation.definition.bracket.curly.end.jsdoc",
+                "punctuation.definition.begin.bracket.curly.php", // php
+                "punctuation.definition.end.bracket.curly.php", // php
+                "punctuation.section.class.begin.bracket.curly.java", // java
+                "punctuation.section.class.end.bracket.curly.java", // java
+            ],
+            "settings": {
+                "foreground": "#892929", // 淡红色
+                "fontStyle": "bold"
+            }
+        },
+        // 大括号次层
+        {
+            "name": "通用大括号次层",
+            "scope": [
+                "punctuation.section.method.begin.bracket.curly.java", // java
+                "punctuation.section.method.end.bracket.curly.java", // java
+            ],
+            "settings": {
+                "foreground": "#3e2989", // 紫蓝色
+                "fontStyle": "bold"
+            }
+        },
+        // 接口
+        {
+            "name": "通用接口",
+            "scope": "entity.name.type.interface.ts", // TypeScript 接口
+            "settings": {
+                "foreground": "#B5CEA8",
+                "fontStyle": "bold"
+            }
+        },
+        // 代码块/列表
+        {
+            "name": "通用代码块/列表",
+            "scope": [
+                "markup.fenced_code.block.markdown", // markdown代码块
+                "markup.list", // Markdown 列表
+                "markup.list.unnumbered.markdown", // Markdown
+                "source.batchfile", // bat
+            ],
+            "settings": {
+                "foreground": "#b35454",
+                "fontStyle": ""
+            }
+        },
+        // 注释
+        {
+            "name": "通用注释",
+            "scope": [
+                "comment.block", // 块注释
+                "comment.line", // 行注释
+                "meta.type.annotation.ts", // TypeScript 注释
+                "keyword.operator.type.annotation.ts",
+                "comment.line.double-slash.json.comments" // JSONC注释
+            ],
+            "settings": {
+                "foreground": "#6A9955", // 绿色（与现有注释一致）
+                "fontStyle": "italic"
+            }
+        },
+        // 错误
+        {
+            "name": "通用错误",
+            "scope": [
+                "invalid.illegal" // 非法语法
+            ],
+            "settings": {
+                "foreground": "#FF0000", // 红色突出错误
+                "fontStyle": "underline" // 下划线增强提示
+            }
+        },
+        // 预处理器指令
+        {
+            "name": "通用预处理器指令",
+            "scope": "meta.preprocessor", // C/C++预处理器
+            "settings": {
+                "foreground": "#808080", // 灰色
+                "fontStyle": "italic" // 斜体
+            }
+        }
+    ]
+}

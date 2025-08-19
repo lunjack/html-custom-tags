@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--网站关键字-->
+    <meta name="keywords" content=[!keywords]"单单独"[~keywords] />
+    <!--网站描述-->
+    <meta name="description" content=[!description]""[~description] />
+    <!--页面定时跳转 值([秒],地址)-->
+    <meta http-equiv="refresh" content=[!refresh]""[~refresh] />
+    <!-- 网站标题 -->
+    <title>[!title][~title]</title>
+    <link rel="stylesheet" href="./static/style.css" />
+    [!style]<!-- 样式区域 -->[~style]
+
+    <style>
+        /* 测试用例 */
+        .selector {
+            /* 双引号字符串 */
+            content: "这是一个双引号字符串";
+
+            /* 单引号字符串 */
+            font-family: 'Arial', 'Helvetica', sans-serif;
+
+            /* 嵌套引号 */
+            quotes: "«" "»";
+
+            /* 背景图片路径 */
+            background-image: url("images/background.jpg");
+
+            /* 属性选择器中的字符串 */
+            input[type="text"] {
+                border: 1px solid #ccc;
+                height: 100px;
+            }
+
+            /* 伪元素的 content 属性 */
+            .element::after {
+                content: '→';
+            }
+
+            /* 变量值中的字符串 */
+            --custom-variable:"变量值";
+        }
+
+        /* 媒体查询中的字符串 */
+        @media screen and (max-width: 600px) {
+            .responsive-element {
+                display: block;
+                content: "这是一个双引号字符串";
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- 默认内容区域 -->
+        [!content]
+        [!test]<h1>测试</h1>[~test]
+        [~content]
+    </div>
+
+    <footer>
+        <!-- 脚本 -->
+        [!footer][~footer]
+
+    </footer>
+    <script>
+        // 1. 设置图标回调（只需一次）
+        ThemeModule.setIconUpdateCallback(function (actualTheme) {
+            const iconElement = document.getElementById('theme');
+            if (iconElement) {
+                // 根据主题切换图片路径
+                iconElement.src = actualTheme === "light" ?
+                    './static/img/浅色模式.png' :
+                    './static/img/深色模式.png';
+            }
+        });
+
+        // 2. 按钮点击切换主题和图标
+        document.getElementById('theme').addEventListener('click', () => {
+            ThemeModule.toggleTheme(); // 同时切换主题和图标
+        });
+
+        // 使用示例
+        const cart = new ShoppingCart();
+        cart.addItem({ name: "Book", price: 29.99 });
+        cart.addItem({ name: "Pen", price: 2.50 });
+
+        console.log("Total:", formatCurrency(cart.getTotal()));
+        [!script]
+        [~script]
+    </script>
+</body>
+
+</html>
