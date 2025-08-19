@@ -151,10 +151,10 @@
                 ☑️ Marketplace（市场）> Acquire（获取权限）
                 ☑️ Marketplace（市场）> Manage（管理权限）
                 ☑️ Marketplace（市场）> Publish（发布权限）
-        4.复制生成的令牌提交扩展（修改成系统变量:VSCE_TOKEN）
-                vsce publish --pat %VSCE_TOKEN%
+        4.发布
+                vsce publish
                 或指定版本
-                  vsce publish 1.0.1
+                vsce publish 1.0.1
     3.手动上传
         在发布者管理页面点击 New extension → Visual Studio Code
         上传生成的 .vsix 文件。
