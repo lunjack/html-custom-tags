@@ -186,11 +186,6 @@
         git commit -m "全新提交文件"
 
     # 4. 设置正确的.gitignore（确保包含所有敏感文件）
-    # 编辑.gitignore文件，确保包含：
-    #   /publish.ps1
-    #   /secret_folder/
-    #   *.key
-    #   *.env
 
     # 5. 强制推送到全新仓库
         git remote add origin https://github.com/lunjack/html-custom-tags.git
