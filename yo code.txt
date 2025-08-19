@@ -181,8 +181,9 @@
 
     # 3. 重新初始化Git仓库
         git init
+        git branch -m main
         git add .
-        git commit -m "全新初始化，不含敏感信息"
+        git commit -m "全新提交文件"
 
     # 4. 设置正确的.gitignore（确保包含所有敏感文件）
     # 编辑.gitignore文件，确保包含：
