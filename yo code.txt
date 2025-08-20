@@ -63,7 +63,10 @@
     脚本安装：(powershell)
             .\setup.ps1
 
-14.直接在项目设置中自定义颜色:
+14.脚本发布命令:(PowerShell) 
+            .\publish.ps1
+
+15.直接在项目设置中自定义颜色:
     在​​使用扩展的项目​​中，通过 .vscode/settings.json文件自定义颜色：
     // .vscode/settings.json
     {
@@ -93,7 +96,7 @@
         }
     }
 
-15.打包工具操作:
+16.打包工具操作:
     # 强制清理旧安装
         npm uninstall -g @vscode/vsce --force
 
@@ -103,10 +106,10 @@
     # 重新安装vsce（以管理员身份运行PowerShell）
         npm install -g @vscode/vsce --force
 
-16.使用技巧:
+17.使用技巧:
     输入完 [!tag] 后,输入空格会自动触发补全闭标签 [~tag] 
 
-17.项目结构:
+18.项目结构:
     html-custom-tags/
     ├── icons/
     │   ├── custom-tag.svg              # 活动栏图标 (28x28px)
@@ -124,7 +127,7 @@
     ├── package.json
     └── language-configuration.json
 
-18.扩展发布:
+19.扩展发布:
     1.创建发布者账号(如果没有)
         访问 Visual Studio Marketplace 发布者管理页面,填写相关信息
         无法创建发布者解决方法:
@@ -158,10 +161,8 @@
     4.手动上传
         在发布者管理页面点击 New extension → Visual Studio Code
         上传生成的 .vsix 文件。
-    5.脚本发布命令 
-            .\publish.ps1
 
-19.创建仓库步骤:(GH)
+20.创建仓库步骤:(GH)
     # 初始化本地仓库
         git init
 
@@ -174,7 +175,7 @@
     # 创建远程仓库并推送（核心命令！）
         gh repo create 仓库名 --public --push --source .
 
-20.重新提交分支步骤:(GH)
+21.重新提交分支步骤:(GH)
     # 1. 备份当前代码（复制整个项目文件夹到安全位置）
 
     # 2. 彻底重置Git历史（保留当前代码）
