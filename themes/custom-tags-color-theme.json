@@ -84,7 +84,8 @@
             "scope": [
                 "meta.selector.css", // CSS 选择器
                 "entity.name.tag.css", // 标签选择器
-                "meta.property-name.css" // 标签名
+                "meta.property-name.css", // 标签名
+                "heading.5.markdown", // md 5级标题
             ],
             "settings": {
                 "foreground": "#2d5bd9" // 天蓝色
@@ -93,7 +94,7 @@
         {
             "scope": [
                 "entity.other.attribute-name.class.css", // 类选择器
-                "punctuation.definition.constant.css" // #号
+                "punctuation.definition.constant.css", // #号
             ],
             "settings": {
                 "foreground": "#289a83" // 青色
@@ -524,6 +525,7 @@
             "name": "删除关键字",
             "scope": [
                 "keyword.operator.expression.delete.js",
+                "punctuation.definition.strikethrough.markdown", // markdown
             ],
             "settings": {
                 "foreground": "#bb2626", // 红色
@@ -654,7 +656,8 @@
             "name": "regexp 量词",
             "scope": [
                 "keyword.operator.quantifier.regexp", // 量词符号
-                "constant.numeric.regexp" // 精确量词数字
+                "constant.numeric.regexp", // 精确量词数字
+                "heading.6.markdown", // md 6级标题
             ],
             "settings": {
                 "foreground": "#d731c9" // 紫色
@@ -696,7 +699,8 @@
             // 反向引用（如 \1）
             "name": "regexp 反向引用",
             "scope": [
-                "keyword.other.back-reference.regexp"
+                "keyword.other.back-reference.regexp",
+                "heading.2.markdown", // md 2级标题
             ],
             "settings": {
                 "foreground": "#ce9178" // 橙色
@@ -794,6 +798,7 @@
                 "heading.1.markdown", // markdown (Change Log)
                 "keyword.other.directive.using.cs", // cs using
                 "keyword.other.import.java", // java
+                "heading.3.markdown", // md 3级标题
             ],
             "settings": {
                 "foreground": "#ad3177", // 粉紫色（与JS循环关键字一致）
@@ -824,6 +829,7 @@
                 "entity.name.function.arrow", // 箭头函数
                 "entity.name.function.decorator.python", // Python 函数名
                 "keyword.operator.key.php", // php =>
+                "heading.1.markdown", // md 1级标题
             ],
             "settings": {
                 "foreground": "#a9a93a", // 亮黄色（与JS函数名一致）
@@ -847,6 +853,7 @@
                 "keyword.type.object.cs", // cs 
                 "keyword.control.statement.batchfile", // bat
                 "variable.other.object.java", // java
+                "heading.4.markdow", // md 4级标题
             ],
             "settings": {
                 "foreground": "#2bad2f", // 绿色
@@ -865,6 +872,7 @@
                 "keyword.type.long.cs", // cs  int
                 "keyword.type.bool.cs", // cs bool
                 "support.type.primitive.ts", // ts
+                "markup.underline.link.image.markdown", // markdown
             ],
             "settings": {
                 "foreground": "#2aa18a", // 青色（与JS内置对象一致）
@@ -929,10 +937,11 @@
             "scope": [
                 "punctuation.definition.string",
                 "punctuation.definition.raw.markdown", // markdown
+                "punctuation.definition.markdown"
             ],
             "settings": {
                 "foreground": "#7a6e17", // 深黄色（与HTML引号一致）
-                "fontStyle": "italic"
+                "fontStyle": "bold"
             }
         },
         // 引号内容字符串
@@ -964,7 +973,7 @@
             "name": "通用模板字符串",
             "scope": [
                 "string.template", // 模板字符串
-                "variable.other.jsdoc"
+                "variable.other.jsdoc",
             ],
             "settings": {
                 "foreground": "#236e2e", // 浅绿色（与jS模板一致）
@@ -1010,7 +1019,7 @@
             "name": "通用点操作符",
             "scope": [
                 "punctuation.accessor",
-                "punctuation.definition.heading.markdown", // markdown #
+                "heading.4.markdown", // markdown # 4级标题符
                 "punctuation.definition.block.tag.jsdoc", // 注释关键字 @
                 "punctuation.definition.variable.php", // php $
                 "keyword.operator.at.batchfile", // bat @
@@ -1035,6 +1044,8 @@
                 "storage.type.class.jsdoc", // 标准注释标签名
                 "punctuation.section.embedded.begin.php", // php
                 "punctuation.section.embedded.end.php", // php
+                "string.other.link.description.markdown", // markdown 
+                "string.other.link.description.title.markdown", // markdown
             ],
             "settings": {
                 "foreground": "#569CD6", // 蓝色（与HTML标签一致）
@@ -1062,6 +1073,7 @@
                 "punctuation.separator", // 逗号 ,/冒号 :
                 "punctuation.terminator", // 分号 ;
                 "punctuation.section.function.begin.python", // python :
+                "constant.character.entity.named.nbsp.html", // 空格符
             ],
             "settings": {
                 "foreground": "#808080", // 灰色
@@ -1203,11 +1215,11 @@
         {
             "name": "通用错误",
             "scope": [
-                "invalid.illegal" // 非法语法
+                "invalid.illegal", // 非法语法
             ],
             "settings": {
                 "foreground": "#FF0000", // 红色突出错误
-                "fontStyle": "underline" // 下划线增强提示
+                "fontStyle": "underline", // 下划线增强提示
             }
         },
         // 预处理器指令
