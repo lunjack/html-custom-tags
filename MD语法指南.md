@@ -4,12 +4,12 @@
 
 使用 # 符号来表示标题，数量从 1 到 6 对应 HTML 的 \<h1> 到 \<h6>。
 
-# 这是一级标题 (H1) 3
+# 这是一级标题 (H1) 
 ## 这是二级标题 (H2)
-### 这是三级标题 (H3) 1
+### 这是三级标题 (H3) 
 #### 这是四级标题 (H4) 
-##### 这是五级标题 (H5) 棕
-###### 这是六级标题 (H6) 灰
+##### 这是五级标题 (H5) 
+###### 这是六级标题 (H6) 
 
 ---
 ### 段落与换行
@@ -84,6 +84,9 @@
 
 ![Markdown标志](https://markdown-here.com/img/icon256.png "Markdown Logo")
 
+- 图片带链接
+[![微信图标](./icons/WeChat.png "WeChat Logo")](https://work.weixin.qq.com/kfid/kfc44c370d4ddbac6f0)
+
 ---
 ### 代码
 
@@ -135,14 +138,13 @@
 ---
 ### 代码块
 
-&nbsp; &nbsp; &nbsp;用三个反引号 ````` 包裹多行代码，并可在开始处指定语言名称以实现语法高亮。
+&nbsp; &nbsp; &nbsp;用三个反引号 ````` 包裹多行代码，并可在开始反引号后指定语言名称以实现语法高亮。
 
-```
-javascript 
+```javascript
 function fancyAlert(arg) { if(arg) { $.facebox({div:'#foo'}) } } 
 ``` 
-```
-python def hello\_world(): print("Hello, World!")
+```python
+ def hello world(): print("Hello, World!")
 ``` 
 
 ---
