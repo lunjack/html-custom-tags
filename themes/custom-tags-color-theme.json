@@ -1035,17 +1035,13 @@
             "name": "通用标签与标题",
             "scope": [
                 "entity.name.tag", // HTML标签
-                "markup.heading", // Markdown 标题
                 "entity.name.tag.yaml", // YAML键
                 "entity.name.anchor.yaml", // YAML锚点
                 "meta.scope.commit-title.git-commit", // Git提交标题
                 "string.other.link.title.markdown", // Markdown 标题
-                "text.html.markdown", // Markdown
                 "storage.type.class.jsdoc", // 标准注释标签名
                 "punctuation.section.embedded.begin.php", // php
                 "punctuation.section.embedded.end.php", // php
-                "string.other.link.description.markdown", // markdown 
-                "string.other.link.description.title.markdown", // markdown
             ],
             "settings": {
                 "foreground": "#569CD6", // 蓝色（与HTML标签一致）
@@ -1060,6 +1056,9 @@
                 "entity.other.attribute-name",
                 "entity.name.type.instance.jsdoc",
                 "keyword.other.package.java", // java 包关键字"
+                "string.other.link.description.markdown", // markdown 
+                "string.other.link.description.title.markdown", // markdown
+                "text.html.markdown", // Markdown
             ],
             "settings": {
                 "foreground": "#0E639C", // 暗蓝色（与HTML属性一致）
