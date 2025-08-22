@@ -62,34 +62,29 @@ code --disable-extensions --disable-workspace-trust "项目路径"
     >按 Ctrl+Shift+P 输入 `Developer: Inspect Editor Tokens and Scopes`
 
 ---
-### 12.打包:
-> #### 打包扩展: `   vsce package    `
-> #### 脚本打包：
+### 12.直接打包/安装/发布扩展(PowerShell):
 ```PowerShell
- .\package.ps1 -Action package
-```
+vsce package           # 打包
 
-注:打包后，生成了 VSIX 文件，复制这个文件给其他人安装，即可使用。
+code --install-extension "html-custom-tags-1.0.3.vsix"    # 安装
 
----
-### 13.安装扩展:(PowerShell)
-> - 直接安装:
-```PowerShell
-code --install-extension "html-custom-tags-1.0.3.vsix"
-```
-> - 脚本安装：
-```PowerShell
-    .\setup.ps1
+vsce publish           # 发布
+
+vsce publish 1.0.3     # 发布指定版本
 ```
 
 ---
-### 14.脚本发布命令:(PowerShell)
+### 13.自定义脚本打包/安装/发布扩展(PowerShell):
 ```PowerShell
-    .\publish.ps1
+.\package.ps1 -Action package       # 打包
+
+.\setup.ps1       # 安装
+
+.\publish.ps1         # 发布
 ```
 
 ---
-15.直接在项目设置中自定义颜色:
+### 14.直接在项目设置中自定义颜色:
 >  >在​项目根目录​，通过 .vscode/settings.json文件自定义颜色：
 ```JSON
 {
@@ -119,7 +114,7 @@ code --install-extension "html-custom-tags-1.0.3.vsix"
 ```
 
 ---
-### 16.打包工具操作:
+### 15.打包工具操作:
 ```PowerShell
 npm uninstall -g @vscode/vsce --force    # 强制清理旧安装
 
@@ -130,11 +125,11 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
 ```
 
 ---
-### 17.使用技巧:
+### 16.使用技巧:
 >     输入完 [!tag] 后,输入空格会自动触发补全闭标签 [~tag]
 
 ---
-### 18.项目结构:
+### 17.项目结构:
     html-custom-tags/
     ├── icons/
     │   ├── custom-tag.svg              # 活动栏图标 (28x28px)
@@ -153,7 +148,7 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
     └── language-configuration.json
 
 ---
-### 19.扩展发布:
+### 18.扩展发布:
 >1. 创建发布者账号(如果没有)
     >> - 访问 Visual Studio Marketplace 发布者管理页面,填写相关信息
     >> - 无法创建发布者解决方法:
@@ -193,7 +188,7 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
     生成的 .vsix 文件。
 
 ---
-### 20.创建仓库步骤:(GH)
+### 19.创建仓库步骤:(GH)
 ```PowerShell
 git init      # 初始化本地仓库
 
@@ -205,7 +200,7 @@ gh repo create 仓库名 --public --push --source .      # 创建远程仓库并
 ```
 
 ---
-### 21.重新提交分支步骤:(GH)
+### 20.重新提交分支步骤:(GH)
 >    1. 备份当前代码（复制整个项目文件夹到安全位置）
 
 >    2. 彻底重置Git历史（保留当前代码）
