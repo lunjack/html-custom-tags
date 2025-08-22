@@ -848,7 +848,7 @@
             "name": "通用对象",
             "scope": [
                 "support.type.object", // Map/Set
-                "keyword.type.object.cs", // cs 
+                "keyword.type.object.cs", // cs
                 "keyword.control.statement.batchfile", // bat
                 "variable.other.object.java", // java
                 "heading.4.markdow", // md 4级标题
@@ -1040,6 +1040,7 @@
                 "storage.type.class.jsdoc", // 标准注释标签名
                 "punctuation.section.embedded.begin.php", // php
                 "punctuation.section.embedded.end.php", // php
+                "fenced_code.block.language.markdown", // Markdown 语言引用
             ],
             "settings": {
                 "foreground": "#569CD6", // 蓝色（与HTML标签一致）
@@ -1054,7 +1055,7 @@
                 "entity.other.attribute-name",
                 "entity.name.type.instance.jsdoc",
                 "keyword.other.package.java", // java 包关键字"
-                "string.other.link.description.markdown", // markdown 
+                "string.other.link.description.markdown", // markdown
                 "string.other.link.description.title.markdown", // markdown
                 "text.html.markdown", // Markdown
             ],
