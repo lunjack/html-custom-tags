@@ -156,7 +156,7 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
         >>> 2. 导入代理规则(VS.json)
 
 >2. 添加许可证 LICENSE文件（根目录）PS指令:
-    >>> 创建 MIT 许可证文件
+    >> - 创建 MIT 许可证文件
 ```PowerShell
         New-Item -Path . -Name LICENSE -ItemType File
         @"
