@@ -78,9 +78,9 @@ vsce publish 1.0.3     # 发布指定版本
 ```PowerShell
 .\package.ps1 -Action package       # 打包
 
-.\setup.ps1       # 安装
+.\setup.ps1                         # 安装
 
-.\publish.ps1         # 发布
+.\publish.ps1                       # 发布
 ```
 
 ---
