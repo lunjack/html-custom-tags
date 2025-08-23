@@ -1,5 +1,7 @@
-### 1.创建扩展项目:
+### 1.创建扩展项目
+>
 > 选择：
+
 ```PowerShell
     yo code
     ? What type of extension do you want to create? New Language Support
@@ -14,15 +16,21 @@
     ? Initialize a git repository? (Y/n) [按需选择]
     ? Do you want to open the new folder with Visual Studio Code? Open with `code` [回车]
 ```
+
 ---
+
 ### 2.修改扩展: package.json
 
 ---
+
 ### 3.修改语法文件: syntaxes/html-custom.tmLanguage.json
 
 ---
-### 4.添加强制关联设置:
+
+### 4.添加强制关联设置
+>
 > 在扩展项目根目录创建 .vscode/settings.json:
+
 ```JSON
 {
     "files.associations": {
@@ -30,39 +38,53 @@
     }
 }
 ```
+
 ---
+
 ### 5.创建入口文件: extension.js
 
 ---
+
 ### 6.更新: language-configuration.json
 
 ---
+
 ### 7.更新: launch.json(强制禁用冲突扩展)
 
 ---
+
 ### 8.删除所有临时文件:​
+
 - 删除项目中的 node_modules文件夹
 - 删除 package-lock.json
 - 在终端中运行: ` npm cache clean --force `
 
 ---
-### 9.纯净模式启动:
+
+### 9.纯净模式启动
+
 ```PowerShell
 code --disable-extensions --disable-workspace-trust "项目路径"
 ```
 
 ---
+
 ### 10.重新安装依赖:​​
-> -  在终端中运行 `npm install`
+>
+> - 在终端中运行 `npm install`
 
 ---
+
 ### 11.启动调试会话:(按F5)
+>
 >1. 打开测试文件 test.html
 >2. 使用作用域检查器：
     >按 Ctrl+Shift+P 输入 `Developer: Inspect Editor Tokens and Scopes`
 
 ---
-### 12.直接打包/安装/发布扩展(PowerShell):
+
+### 12.直接打包/安装/发布扩展(PowerShell)
+
 ```PowerShell
 vsce package           # 打包
 
@@ -74,7 +96,9 @@ vsce publish 1.0.3     # 发布指定版本
 ```
 
 ---
-### 13.自定义脚本打包/安装/发布扩展(PowerShell):
+
+### 13.自定义脚本打包/安装/发布扩展(PowerShell)
+
 ```PowerShell
 .\package.ps1 -Action package       # 打包
 
@@ -84,8 +108,11 @@ vsce publish 1.0.3     # 发布指定版本
 ```
 
 ---
-### 14.直接在项目设置中自定义颜色:
->  >在​项目根目录​，通过 .vscode/settings.json文件自定义颜色：
+
+### 14.直接在项目设置中自定义颜色
+> >
+> >在​项目根目录​，通过 .vscode/settings.json文件自定义颜色：
+
 ```JSON
 {
     "editor.tokenColorCustomizations": {
@@ -114,7 +141,9 @@ vsce publish 1.0.3     # 发布指定版本
 ```
 
 ---
-### 15.打包工具操作:
+
+### 15.打包工具操作
+
 ```PowerShell
 npm uninstall -g @vscode/vsce --force    # 强制清理旧安装
 
@@ -125,11 +154,17 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
 ```
 
 ---
-### 16.使用技巧:
->     输入完 [!tag] 后,输入空格会自动触发补全闭标签 [~tag]
+
+### 16.使用技巧
+
+> ```text
+> 输入完 [!tag] 后,输入空格会自动触发补全闭标签 [~tag]
+> ```
 
 ---
-### 17.项目结构:
+
+### 17.项目结构
+<!-- markdownlint-disable MD046 -->
     html-custom-tags/
     ├── icons/
     │   ├── custom-tag.svg              # 活动栏图标 (28x28px)
@@ -146,17 +181,19 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
     ├── extension.js
     ├── package.json
     └── language-configuration.json
-
 ---
-### 18.扩展发布:
+
+### 18.扩展发布
+>
 >1. 创建发布者账号(如果没有)
     >> - 访问 Visual Studio Marketplace 发布者管理页面,填写相关信息
     >> - 无法创建发布者解决方法:
         >>> 1. 浏览器安装header editor插件
         >>> 2. 导入代理规则(VS.json)
-
+<!-- markdownlint-disable MD029 -->
 >2. 添加许可证 LICENSE文件（根目录）PS指令:
     >> - 创建 MIT 许可证文件
+
 ```PowerShell
         New-Item -Path . -Name LICENSE -ItemType File
         @"
@@ -168,27 +205,34 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
         ...
         "@ | Out-File -Encoding utf8 LICENSE
 ```
+>
+<!-- markdownlint-disable MD029 -->
 >3. 生成个人访问令牌 (PAT)
->   >1. 在发布者管理页面
-        https://dev.azure.com/china0826/_usersSettings/tokens
+>   >
+> >1. 在发布者管理页面
+        <https://dev.azure.com/china0826/_usersSettings/tokens>
         点击 Create Token
         Organization（组织）: china0826
->   >2. 设置名称
+> >2. 设置名称
         lunjack-VSCE-Token    有效期建议选 1年。
->   >3. 权限范围勾选 Marketplace 选择全部:
+> >3. 权限范围勾选 Marketplace 选择全部:
         >>>- ☑️ Marketplace（市场）> Acquire（获取权限）
         >>>- ☑️ Marketplace（市场）> Manage（管理权限）
         >>>- ☑️ Marketplace（市场）> Publish（发布权限）
->   >4. 发布指令
+> >4. 发布指令
         ` vsce publish `
         或指定版本
         ` vsce publish 1.0.1 `
+>
+<!-- markdownlint-disable MD029 -->
 >4. 手动上传
     在发布者管理页面点击 New extension → 上传在Visual Studio Code
     生成的 .vsix 文件。
 
 ---
+
 ### 19.创建仓库步骤:(GH)
+
 ```PowerShell
 git init      # 初始化本地仓库
 
@@ -200,25 +244,50 @@ gh repo create 仓库名 --public --push --source .      # 创建远程仓库并
 ```
 
 ---
-### 20.重新提交分支步骤:(GH)
->    1. 备份当前代码（复制整个项目文件夹到安全位置）
 
->    2. 彻底重置Git历史（保留当前代码）
+### 20.重新提交分支步骤:(GH)
+>
+> 1. 备份当前代码（复制整个项目文件夹到安全位置）
+<!-- markdownlint-disable MD029 -->
+> 2. 彻底重置Git历史（保留当前代码）
+>
 ```PowerShell
         Remove-Item -Recurse -Force .\.git     # 删除所有Git历史
 ```
->    3. 重新初始化Git仓库
+>
+<!-- markdownlint-disable MD029 -->
+> 3. 重新初始化Git仓库
+>
 ```PowerShell
         git init
+
         git branch -m main
+
         git add .
+
         git commit -m "全新提交文件"
 ```
 
->    4. 设置正确的.gitignore（确保包含所有敏感文件）
+> 4. 设置正确的.gitignore（确保包含所有敏感文件）
 
->    5. 强制推送到全新仓库
+<!-- markdownlint-disable MD028 -->
+> 5. 强制推送到全新仓库
+>
+
 ```PowerShell
         git remote add origin https://github.com/lunjack/html-custom-tags.git
+
         git push -u origin main --force
 ```
+
+---
+
+### 21. Markdown Lint
+>
+> 在项目根目录创建 .markdownlint.json:
+>
+> ```JSON
+> {
+>   "MD029": { "style": "ordered" }
+> }
+> ```
