@@ -17,7 +17,8 @@
 
 ## 注意!!!
 >
->   ### 如果你的需求只是多语言主题高亮,当前插件已够用,如果你希望和当前标签高亮相关的HTML模板功能,请执行相关指令(如果没装的话):
+>   ### 如果你的需求只是多语言主题高亮,当前插件已够用
+>   ### 如果你希望和当前标签高亮相关的HTML模板功能,请执行相关指令(如果没装的话):
 ```PowerShell
 npm init -y			# 初始化项目
 npm install lunjack-html-template-package  # 本地
@@ -27,4 +28,5 @@ npm install -g lunjack-html-template-package # 全局
 	npm i -g lunjack-html-template-package
 # 注意：请最好使用空项目执行此操作(新用户的话)
 ```
+>   ### 本模板插件优点是:拿来即用,你只需专注于自己的项目逻辑,其它交给插件
 ---
