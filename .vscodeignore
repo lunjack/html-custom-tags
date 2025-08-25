@@ -3,6 +3,7 @@
 .gitignore
 vsc-extension-quickstart.md
 yo code.md
+MD语法指南.md
 *.ps1
 test.html
 **/secrets.*
