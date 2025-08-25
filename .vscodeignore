@@ -2,9 +2,9 @@
 .vscode-test/**
 .gitignore
 vsc-extension-quickstart.md
-yo code.txt
-*.ps1           
-test.html       
-**/secrets.*   
-/backups/  
-VS.json     
+yo code.md
+*.ps1
+test.html
+**/secrets.*
+/backups/
+VS.json
