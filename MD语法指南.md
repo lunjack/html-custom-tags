@@ -141,10 +141,10 @@
 ### 表格
 
 &nbsp; &nbsp; &nbsp;使用连字符来分隔表头，使用管道符来分隔列,对齐方式由冒号位置决定。
-| <span style="padding: 0px 30px 0px 0px;">左对齐</span> | <span style="padding: 0px 30px;">居中对齐</span> |<span style="padding: 0px 0px 30px 0px ; ">右对齐</span> |
-| :------- | :------: | ------: |
-| 单元格123 |  单元格456  | 单元格789 |
-| 单元格 |  单元格  | 单元格 |
+| <span style="padding: 0px 30px 0px 0px;">左对齐</span> | <span style="padding: 0px 30px;">居中对齐</span> | <span style="padding: 0px 0px 30px 0px ; ">右对齐</span> |
+| :----------------------------------------------------- | :----------------------------------------------: | -------------------------------------------------------: |
+| 单元格123                                              |                    单元格456                     |                                                单元格789 |
+| 单元格                                                 |                      单元格                      |                                                   单元格 |
 
 
 ---
@@ -178,3 +178,12 @@ function fancyAlert(arg) { if(arg) { $.facebox({div:'#foo'}) } }
 - <https://www.example.com>
 
 - <fake@example.com>
+
+---
+### 空格
+>
+-   窄空格&nbsp;(这里有一个)
+
+-  半角空格&ensp;(这里有一个)	相当于半个汉字宽度
+
+-   全角空格&emsp;(这里有一个)	相当于一个汉字宽度

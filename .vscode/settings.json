@@ -1,9 +1,13 @@
 {
   "editor.suggestOnTriggerCharacters": false,
-  "editor.quickSuggestions": false,
+  "editor.quickSuggestions": {
+    "comments": "off",
+    "strings": "off",
+    "other": "off"
+  },
   "files.associations": {
     "*.html": "html"
   },
   "workbench.colorTheme": "Custom Tags Theme",
-  "editor.wordBasedSuggestions": false
+  "editor.wordBasedSuggestions": "off"
 }
