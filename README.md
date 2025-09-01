@@ -30,5 +30,5 @@ npm install -g lunjack-html-template-package # 全局
 	npm i -g lunjack-html-template-package
 # 注意：请最好使用空项目执行此操作(新用户的话)
 ```
->   ### 本模板插件优点是:拿来即用,你只需专注于自己的项目逻辑,其它交给插件
+>   ### 本模板npm插件优点是:拿来即用,你只需专注于自己的项目逻辑,其它交给插件;此外VScode高亮插件,还有标签统计和跳转功能...
 ---
