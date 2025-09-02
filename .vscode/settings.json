@@ -1,9 +1,9 @@
 {
   "editor.suggestOnTriggerCharacters": false,
   "editor.quickSuggestions": {
+    "other": "off",
     "comments": "off",
-    "strings": "off",
-    "other": "off"
+    "strings": "off"
   },
   "files.associations": {
     "*.html": "html"
