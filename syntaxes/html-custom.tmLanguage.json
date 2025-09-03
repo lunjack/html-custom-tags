@@ -3,6 +3,42 @@
 	"injectionSelector": "L:text.html",
 	"patterns": [
 		{
+			"name": "custom-tag.extends",
+			"match": "(\\[)(extends)(\\s+[^\\]]*)(\\])",
+			"captures": {
+				"1": {
+					"name": "custom-tag.bracket.open"
+				},
+				"2": {
+					"name": "custom-tag.flag"
+				},
+				"3": {
+					"name": "custom-tag.name"
+				},
+				"4": {
+					"name": "custom-tag.bracket.close"
+				}
+			}
+		},
+		{
+			"name": "custom-tag.include",
+			"match": "(\\[)(include)(\\s+[^\\]]*)(\\])",
+			"captures": {
+				"1": {
+					"name": "custom-tag.bracket.open"
+				},
+				"2": {
+					"name": "custom-tag.flag"
+				},
+				"3": {
+					"name": "custom-tag.name"
+				},
+				"4": {
+					"name": "custom-tag.bracket.close"
+				}
+			}
+		},
+		{
 			"name": "custom-tag",
 			"match": "(\\[)([!~])([^\\]]+)(\\])",
 			"captures": {

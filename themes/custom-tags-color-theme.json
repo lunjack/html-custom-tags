@@ -545,7 +545,7 @@
             }
         },
         // =====================================
-        // 自定义标签 [!tag]和[~tag]规则
+        // 自定义标签 [!tag]和[~tag],[extends fileName],[include fileName]规则
         // =====================================
         {
             "scope": [
@@ -558,14 +558,14 @@
             }
         },
         {
-            "scope": "custom-tag.flag", // !和~
+            "scope": "custom-tag.flag", // !和~,extends,include
             "settings": {
                 "foreground": "#C792EA", // 紫色，突出标志
                 "fontStyle": "bold"
             }
         },
         {
-            "scope": "custom-tag.name", // tag
+            "scope": "custom-tag.name", // tag,extendsFileName,includeFileName
             "settings": {
                 "foreground": "#9c5a0a", // 锈棕色，突出标签名
                 "fontStyle": "bold" // 粗体增强可读性
