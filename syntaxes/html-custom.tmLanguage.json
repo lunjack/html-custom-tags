@@ -39,14 +39,32 @@
 			}
 		},
 		{
-			"name": "custom-tag",
-			"match": "(\\[)([!~])([^\\]]+)(\\])",
+			"name": "custom-tag.open",
+			"match": "(\\[)(!)([^\\]]+)(\\])",
 			"captures": {
 				"1": {
 					"name": "custom-tag.bracket.open"
 				},
 				"2": {
-					"name": "custom-tag.flag"
+					"name": "custom-tag.open-flag"
+				},
+				"3": {
+					"name": "custom-tag.name"
+				},
+				"4": {
+					"name": "custom-tag.bracket.close"
+				}
+			}
+		},
+		{
+			"name": "custom-tag.close",
+			"match": "(\\[)(~)([^\\]]+)(\\])",
+			"captures": {
+				"1": {
+					"name": "custom-tag.bracket.open"
+				},
+				"2": {
+					"name": "custom-tag.close-flag"
 				},
 				"3": {
 					"name": "custom-tag.name"

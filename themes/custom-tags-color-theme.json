@@ -558,9 +558,19 @@
             }
         },
         {
-            "scope": "custom-tag.flag", // !和~,extends,include
+            "scope": [
+                "custom-tag.flag", // extends,include
+                "custom-tag.open-flag" //  !
+            ],
             "settings": {
                 "foreground": "#C792EA", // 紫色，突出标志
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "scope": "custom-tag.close-flag", // ~
+            "settings": {
+                "foreground": "#a83526", // 红色，突出标志
                 "fontStyle": "bold"
             }
         },
