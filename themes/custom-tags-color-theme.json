@@ -467,7 +467,7 @@
                 "punctuation.accessor.optional.js", // ?.可选链运算符
             ],
             "settings": {
-                "foreground": "#C792EA", // 紫色，突出标志
+                "foreground": "#197d3c", // 中绿色，突出标志
                 "fontStyle": "bold"
             }
         },
@@ -572,7 +572,7 @@
                 "custom-tag.open-flag" //  !
             ],
             "settings": {
-                "foreground": "#C792EA", // 紫色，突出标志
+                "foreground": "#197d3c", // 中绿色，突出标志
                 "fontStyle": "bold"
             }
         },
