@@ -464,11 +464,20 @@
             "name": "特殊运算符",
             "scope": [
                 "keyword.operator.logical.js", // && || !
-                "keyword.operator.bitwise.js", // & | ^ ~
                 "punctuation.accessor.optional.js", // ?.可选链运算符
             ],
             "settings": {
                 "foreground": "#C792EA", // 紫色，突出标志
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "特殊运算符",
+            "scope": [
+                "keyword.operator.bitwise.js", // & | ^ ~
+            ],
+            "settings": {
+                "foreground": "#971f10", // 红色
                 "fontStyle": "bold"
             }
         },
@@ -570,7 +579,7 @@
         {
             "scope": "custom-tag.close-flag", // ~
             "settings": {
-                "foreground": "#a83526", // 红色，突出标志
+                "foreground": "#971f10", // 红色，突出标志
                 "fontStyle": "bold"
             }
         },
