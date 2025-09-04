@@ -477,7 +477,7 @@
                 "keyword.operator.bitwise.js", // & | ^ ~
             ],
             "settings": {
-                "foreground": "#971f10", // 红色
+                "foreground": "#c52020", // 红色
                 "fontStyle": "bold"
             }
         },
@@ -579,7 +579,7 @@
         {
             "scope": "custom-tag.close-flag", // ~
             "settings": {
-                "foreground": "#971f10", // 红色，突出标志
+                "foreground": "#c52020", // 红色，突出标志
                 "fontStyle": "bold"
             }
         },
