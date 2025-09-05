@@ -580,7 +580,7 @@
             "scope": "custom-tag.close-flag", // ~
             "settings": {
                 "foreground": "#c52020", // 红色，突出标志
-                "fontStyle": "bold"
+                "fontStyle": "bold "
             }
         },
         {
