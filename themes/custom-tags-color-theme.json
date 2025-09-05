@@ -1249,5 +1249,10 @@
                 "fontStyle": "italic" // 斜体
             }
         }
-    ]
+    ],
+    "editorBracketHighlight.foreground2": "#cb4b2a",
+    "editorBracketHighlight.foreground3": "#3773cf",
+    "editorBracketHighlight.foreground4": "#252863",
+    "editorBracketHighlight.foreground5": "#5a1113",
+    "editorBracketHighlight.foreground6": "#ADD8E6"
 }
