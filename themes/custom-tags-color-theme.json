@@ -3,7 +3,13 @@
     "name": "Enhanced Custom Tags Theme",
     "type": "dark",
     "semanticHighlighting": true, // 限定作用域范围
-    "colors": {},
+    "colors": {
+        "statusBar.background": "#2d2d30",
+        "statusBar.foreground": "#1bb02a",
+        "statusBarItem.hoverBackground": "#3c3c3c",
+        "statusBarItem.remoteBackground": "#3838d7",
+        "statusBar.debuggingBackground": "#cc6633"
+    },
     "tokenColors": [
         // =====================================
         // HTML 相关规则
