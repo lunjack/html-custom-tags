@@ -4,11 +4,29 @@
     "type": "dark",
     "semanticHighlighting": true, // 限定作用域范围
     "colors": {
-        "statusBar.background": "#2d2d30",
-        "statusBar.foreground": "#1bb02a",
-        "statusBarItem.hoverBackground": "#3c3c3c",
-        "statusBarItem.remoteBackground": "#3838d7",
-        "statusBar.debuggingBackground": "#cc6633"
+        // 列表/资源管理器动态颜色设置
+        "list.activeSelectionForeground": "#FFFFFF", // 选中项的文字颜色
+        "list.inactiveSelectionForeground": "#163cb9", // 非活动选中项的文字颜色
+        "list.focusForeground": "#569CD6", // 焦点项的文本颜色
+        "list.hoverForeground": "#4EC9B0", // 悬停项的文本颜色
+        // 列表/资源管理器背景色设置
+        "list.activeSelectionBackground": "#094771", // 选中项背景色
+        "list.inactiveSelectionBackground": "#1e1e1f", // 非活动选中项背景色
+        "list.hoverBackground": "#2A2D2E", // 悬停项背景色
+        // 树形视图颜色设置（适用于资源管理器）
+        "tree.indentGuidesStroke": "#404040", // 缩进指南线颜色
+        // 状态栏颜色设置
+        "statusBar.background": "#2d2d30", // 状态栏背景色
+        "statusBar.foreground": "#208f2b", // 状态栏前景色（文字颜色）
+        "statusBarItem.hoverBackground": "#20036a", // 状态栏项悬停时的背景色
+        "statusBarItem.remoteBackground": "#3838d7", // 远程连接状态栏项的背景色
+        "statusBar.debuggingBackground": "#cc6633", // 调试状态下的状态栏背景色
+        // 侧边栏颜色设置
+        "sideBar.background": "#252526", // 侧边栏背景色
+        "sideBar.foreground": "#179a24", // 侧边栏文字颜色
+        "sideBarSectionHeader.background": "#2D2D30", // 区域标题背景色
+        "sideBarSectionHeader.foreground": "#FFFFFF", // 区域标题文字颜色
+        "sideBarTitle.foreground": "#BBBBBB" // 侧边栏标题颜色
     },
     "tokenColors": [
         // =====================================

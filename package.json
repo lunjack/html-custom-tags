@@ -2,7 +2,7 @@
   "name": "html-custom-tags",
   "displayName": "HTML Custom Tags Highlighter",
   "description": "Syntax highlighting for custom [!tag][~tag] in HTML files with enhanced bracket coloring. Supports tag navigation, statistics and customization.",
-  "version": "1.0.149",
+  "version": "1.0.154",
   "publisher": "lunjack",
   "repository": {
     "type": "git",
