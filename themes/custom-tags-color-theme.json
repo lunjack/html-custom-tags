@@ -6,7 +6,7 @@
     "colors": {
         // 列表/资源管理器动态颜色设置
         "list.activeSelectionForeground": "#FFFFFF", // 选中项的文字颜色
-        "list.inactiveSelectionForeground": "#163cb9", // 非活动选中项的文字颜色
+        "list.inactiveSelectionForeground": "#5577e6", // 非活动选中项的文字颜色
         "list.focusForeground": "#569CD6", // 焦点项的文本颜色
         "list.hoverForeground": "#4EC9B0", // 悬停项的文本颜色
         // 列表/资源管理器背景色设置
