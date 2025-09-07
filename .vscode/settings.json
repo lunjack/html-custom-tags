@@ -1,8 +1,8 @@
 {
   "editor.quickSuggestions": {
-    "other": "off",
     "comments": "off",
-    "strings": "off"
+    "strings": "off",
+    "other": "off"
   },
   "workbench.colorTheme": "Custom Tags Theme",
   "editor.suggestOnTriggerCharacters": false,

@@ -176,6 +176,80 @@ class TagFinder {
 }
 
 // ======================
+// 装饰器管理器（用于标签高亮）
+// ======================
+class DecorationManager {
+    constructor() {
+        this.currentDecorations = [];
+        this.correspondingDecorations = [];
+        this.currentDecorationType = vscode.window.createTextEditorDecorationType({
+            backgroundColor: 'rgba(255,215,0,0.1)',  // 更明显的当前标签高亮颜色
+            borderRadius: '3px',
+            border: '1px solid #FFD700',  // 金色边框
+            fontWeight: 'bold'
+        });
+        this.correspondingDecorationType = vscode.window.createTextEditorDecorationType({
+            backgroundColor: 'rgba(100,200,255,0.1)',  // 更明显的对应标签高亮颜色
+            borderRadius: '3px',
+            border: '1px solid #64C8FF',  // 蓝色边框
+            fontWeight: 'bold'
+        });
+    }
+
+    // 清除所有高亮装饰
+    clearAllDecorations(editor) {
+        if (editor) {
+            editor.setDecorations(this.currentDecorationType, []);
+            editor.setDecorations(this.correspondingDecorationType, []);
+        }
+        this.currentDecorations = [];
+        this.correspondingDecorations = [];
+    }
+
+    // 高亮标签和对应标签
+    highlightTagAndCounterpart(editor, tag, allTags) {
+        this.clearAllDecorations(editor);
+
+        // 验证标签范围是否有效
+        if (!this.isValidRange(editor.document, tag.range)) {
+            return;
+        }
+
+        // 高亮当前标签
+        this.currentDecorations.push({
+            range: tag.range
+        });
+        editor.setDecorations(this.currentDecorationType, this.currentDecorations);
+
+        // 查找并高亮对应标签
+        const counterpartType = tag.type === TAG_TYPES.OPENING ? TAG_TYPES.CLOSING : TAG_TYPES.OPENING;
+        const counterpartTags = allTags.filter(t =>
+            t.name === tag.name &&
+            t.type === counterpartType
+        );
+
+        if (counterpartTags.length > 0) {
+            this.correspondingDecorations = counterpartTags.map(t => ({
+                range: t.range
+            }));
+            editor.setDecorations(this.correspondingDecorationType, this.correspondingDecorations);
+        }
+    }
+
+    // 检查范围是否在文档有效范围内
+    isValidRange(document, range) {
+        const docEnd = document.lineAt(document.lineCount - 1).range.end;
+        return range.start.isBeforeOrEqual(docEnd) &&
+            range.end.isBeforeOrEqual(docEnd);
+    }
+
+    dispose() {
+        this.currentDecorationType.dispose();
+        this.correspondingDecorationType.dispose();
+    }
+}
+
+// ======================
 // 标签数据提供器
 // ======================
 class CustomTagProvider {
@@ -246,6 +320,7 @@ class StateManager {
         const editor = getActiveHtmlEditor();
         if (editor) {
             this.checkState(editor);
+            this.updateHighlightsOnFocus();
         }
         this.updateQueue = [];
     }
@@ -261,6 +336,45 @@ class StateManager {
             insideTag ?
                 ConfigManager.disableSuggestions() :
                 ConfigManager.restoreSuggestions(this.originalSettings);
+        }
+    }
+
+    // 处理焦点变化
+    handleFocusChange(focused) {
+        const editor = getActiveHtmlEditor();
+        if (!editor) {
+            return;
+        }
+        if (focused) {
+            // 获得焦点时，检查当前光标位置并高亮
+            const position = editor.selection.active;
+            const document = editor.document;
+            const tags = TagFinder.findAllCustomTags(document);
+            const currentTag = tags.find(tag => tag.range.contains(position));
+
+            if (currentTag) {
+                TagHighlighter.setActiveTag(editor, currentTag);
+            }
+        } else {
+            // 失去焦点时清除高亮
+            TagHighlighter.clearActiveTag();
+        }
+    }
+
+    // 更新高亮
+    updateHighlightsOnFocus() {
+        const editor = getActiveHtmlEditor();
+        if (editor && vscode.window.state.focused) {
+            const position = editor.selection.active;
+            const document = editor.document;
+            const tags = TagFinder.findAllCustomTags(document);
+            const currentTag = tags.find(tag => tag.range.contains(position));
+
+            if (currentTag) {
+                TagHighlighter.setActiveTag(editor, currentTag);
+            } else {
+                TagHighlighter.clearActiveTag();
+            }
         }
     }
 
@@ -293,6 +407,66 @@ class TagStatistics {
 
     static generateDetailsHTML(tagName, statistics) {
         return generateTagDetailsHTML(tagName, statistics);
+    }
+}
+
+// ======================
+// 标签高亮管理器（重构）
+// ======================
+class TagHighlighter {
+    static decorationManager = new DecorationManager();
+    static activeEditor = null;
+    static activeTag = null;
+    static allTags = [];
+
+    static setActiveTag(editor, tag) {
+        this.activeEditor = editor;
+        this.activeTag = tag;
+        this.allTags = TagFinder.findAllCustomTags(editor.document);
+        this.updateHighlights();
+    }
+
+    static clearActiveTag() {
+        this.decorationManager.clearAllDecorations(this.activeEditor);
+        this.activeEditor = null;
+        this.activeTag = null;
+        this.allTags = [];
+    }
+
+    static updateHighlights() {
+        if (!this.activeEditor || !this.activeTag) return;
+
+        this.decorationManager.highlightTagAndCounterpart(
+            this.activeEditor,
+            this.activeTag,
+            this.allTags
+        );
+    }
+
+    static handleEditorClick(event) {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor || editor.document.languageId !== 'html') return;
+
+        const position = event.selections[0].active;
+        const document = editor.document;
+        const tags = TagFinder.findAllCustomTags(document);
+
+        // 查找点击位置对应的标签
+        const clickedTag = tags.find(tag =>
+            tag.range.contains(position)
+        );
+
+        if (clickedTag) {
+            this.setActiveTag(editor, clickedTag);
+        } else {
+            this.clearActiveTag();
+        }
+    }
+
+    // 当插件停用时释放资源
+    static dispose() {
+        this.clearActiveTag();
+        this.decorationManager.dispose();
     }
 }
 
@@ -362,11 +536,15 @@ class CommandHandler {
         );
 
         if (matchedTags.length > 0) {
+            const firstMatch = matchedTags[0];
             editor.selection = new vscode.Selection(
-                matchedTags[0].range.start,
-                matchedTags[0].range.end
+                firstMatch.range.start,
+                firstMatch.range.end
             );
-            editor.revealRange(matchedTags[0].range);
+            editor.revealRange(firstMatch.range);
+
+            // 高亮当前标签和对应标签
+            TagHighlighter.setActiveTag(editor, firstMatch);
         } else {
             vscode.window.showWarningMessage(
                 `未找到 "${tagName}" ${TAG_DISPLAY_NAMES[tagType]}`
@@ -415,10 +593,25 @@ class CommandHandler {
                 const selection = new vscode.Selection(startPos, endPos);
                 editor.selection = selection;
                 editor.revealRange(selection, vscode.TextEditorRevealType.InCenter);
+
+                // 点击后高亮标签和对应标签
+                const clickedTag = tags.find(tag =>
+                    tag.range.start.line === message.startLine &&
+                    tag.range.start.character === message.startChar
+                );
+
+                if (clickedTag) {
+                    TagHighlighter.setActiveTag(editor, clickedTag);
+                }
             }
         });
 
         tagDetailPanels.add(panelKey, panel);
+    }
+
+    // 清除所有高亮的命令
+    static clearHighlights() {
+        TagHighlighter.clearActiveTag();
     }
 }
 
@@ -486,7 +679,8 @@ function activate(context) {
     const commands = [
         vscode.commands.registerCommand('html-custom-tags.jumpToTag', CommandHandler.jumpToTag),
         vscode.commands.registerCommand('html-custom-tags.showTagDetails', CommandHandler.showTagDetails),
-        vscode.commands.registerCommand('html-custom-tags.copyAllTags', CommandHandler.copyAllTags)
+        vscode.commands.registerCommand('html-custom-tags.copyAllTags', CommandHandler.copyAllTags),
+        vscode.commands.registerCommand('html-custom-tags.clearHighlights', CommandHandler.clearHighlights)
     ];
 
     // 注册事件监听器
@@ -512,6 +706,19 @@ function activate(context) {
             TagFinder.clearCache(e.document); // 清除缓存
             CommandHandler.autoCloseCustomTag(e);
             handleStateUpdate();
+
+            // 如果修改影响了当前高亮标签，更新高亮
+            if (TagHighlighter.activeEditor &&
+                e.document === TagHighlighter.activeEditor.document &&
+                TagHighlighter.activeTag) {
+                const affectsHighlight = e.contentChanges.some(change =>
+                    TagHighlighter.activeTag.range.intersection(change.range)
+                );
+
+                if (affectsHighlight) {
+                    TagHighlighter.updateHighlights();
+                }
+            }
         }),
         vscode.window.onDidChangeActiveTextEditor(() => {
             handleStateUpdate();
@@ -523,7 +730,25 @@ function activate(context) {
         vscode.workspace.onDidCloseTextDocument(doc => {
             TagFinder.clearCache(doc); // 文档关闭时清除缓存
         }),
-        new Disposable(() => stateManager.dispose())
+        new Disposable(() => stateManager.dispose()),
+
+        // 点击标签高亮功能
+        vscode.window.onDidChangeTextEditorSelection(TagHighlighter.handleEditorClick.bind(TagHighlighter)),
+
+        // 高亮相关事件监听
+        vscode.window.onDidChangeWindowState(state => {
+            // 窗口状态变化时处理高亮
+            stateManager.handleFocusChange(state.focused);
+        }),
+        vscode.workspace.onDidCloseTextDocument(() => {
+            TagHighlighter.clearActiveTag();
+        }),
+        vscode.window.onDidChangeVisibleTextEditors(editors => {
+            const activeEditor = TagHighlighter.activeEditor;
+            if (activeEditor && !editors.includes(activeEditor)) {
+                TagHighlighter.clearActiveTag();
+            }
+        })
     ];
 
     // 初始状态检查
@@ -551,6 +776,7 @@ function deactivate() {
     ConfigManager.restoreSuggestions(originalSettings);
     tagDetailPanels.disposeAll();
     stateManager?.dispose();
+    TagHighlighter.dispose(); // 释放高亮资源
 }
 
 module.exports = {
