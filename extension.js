@@ -122,62 +122,25 @@ class CustomTagItem extends vscode.TreeItem {
 // 标签查找器（带缓存）
 // ======================
 class TagFinder {
-    static tagCache = new Map();
+    static tagCache = {};
 
     static clearCache(document) {
         if (document) {
             const uri = document.uri.toString();
-            this.tagCache.delete(uri);
+            delete this.tagCache[uri];
         }
     }
 
-    // 增量更新缓存
-    static updateCache(document, changes) {
+    static updateCache(document) {
         const uri = document.uri.toString();
-        if (!this.tagCache.has(uri)) return;
-
-        const tags = this.tagCache.get(uri);
-        let updated = false;
-
-        // 根据文档变化更新标签位置
-        changes.forEach(change => {
-            const offset = change.rangeOffset;
-            const lengthChange = change.text.length - change.rangeLength;
-
-            for (let i = 0; i < tags.length; i++) {
-                const tag = tags[i];
-                const tagStart = document.offsetAt(tag.range.start);
-
-                // 如果修改发生在标签前面
-                if (offset < tagStart) {
-                    // 更新标签位置
-                    const newStart = document.positionAt(tagStart + lengthChange);
-                    tag.range = new vscode.Range(
-                        newStart,
-                        document.positionAt(document.offsetAt(tag.range.end) + lengthChange)
-                    );
-                    updated = true;
-                }
-                // 如果修改影响标签本身
-                else if (offset >= tagStart && offset <= document.offsetAt(tag.range.end)) {
-                    // 重新解析
-                    tags.splice(i, 1);
-                    i--;
-                    updated = true;
-                }
-            }
-        });
-
-        if (updated) {
-            this.tagCache.set(uri, tags);
-        }
+        delete this.tagCache[uri];
     }
 
     static findAllCustomTags(document) {
         if (!document || document.languageId !== 'html') return [];
 
         const uri = document.uri.toString();
-        if (this.tagCache.has(uri)) return this.tagCache.get(uri);
+        if (this.tagCache[uri]) return this.tagCache[uri];
 
         const tags = [];
         const text = document.getText();
@@ -194,11 +157,12 @@ class TagFinder {
                 fullText: match[0],
                 range: new vscode.Range(
                     document.positionAt(match.index),
-                    document.positionAt(match.index + match[0].length))
+                    document.positionAt(match.index + match[0].length)
+                )
             });
         }
 
-        this.tagCache.set(uri, tags);
+        this.tagCache[uri] = tags;
         return tags;
     }
 
@@ -272,12 +236,12 @@ class DecorationManager {
         this.correspondingDecorations = [];
     }
 
-    // 高亮标签和对应标签
+    // 高亮标签和对应标签 - 增加边界检查
     highlightTagAndCounterpart(editor, tag, allTags) {
         this.clearAllDecorations(editor);
 
         // 验证标签范围是否有效
-        if (!this.isValidRange(editor.document, tag.range)) {
+        if (!this.isValidTagPosition(editor.document, tag.range)) {
             return;
         }
 
@@ -310,11 +274,28 @@ class DecorationManager {
         }
     }
 
-    // 检查范围是否在文档有效范围内
-    isValidRange(document, range) {
-        const docEnd = document.lineAt(document.lineCount - 1).range.end;
-        return range.start.isBeforeOrEqual(docEnd) &&
-            range.end.isBeforeOrEqual(docEnd);
+    // 增强的边界检查 - 确保范围在文档有效范围内
+    isValidTagPosition(document, range) {
+        try {
+            // 检查范围对象是否存在
+            if (!range || !range.start || !range.end) return false;
+
+            // 检查行号是否在文档范围内
+            if (range.start.line >= document.lineCount ||
+                range.end.line >= document.lineCount) {
+                return false;
+            }
+
+            const startLine = document.lineAt(range.start.line);
+            const endLine = document.lineAt(range.end.line);
+
+            // 检查字符位置是否在行范围内
+            return range.start.character <= startLine.text.length &&
+                range.end.character <= endLine.text.length;
+        } catch (e) {
+            // 任何异常都表示位置无效
+            return false;
+        }
     }
 
     dispose() {
@@ -485,18 +466,25 @@ class TagHighlighter {
     // 文档变化处理
     static handleDocumentChange(event) {
         if (this.activeEditor && event.document === this.activeEditor.document) {
-            // 重新验证当前活动标签
+            // 清除缓存并重新解析所有标签
+            TagFinder.updateCache(event.document);
+            const tags = TagFinder.findAllCustomTags(event.document);
+
             if (this.activeTag) {
-                const tags = TagFinder.findAllCustomTags(event.document);
-                const tagStillExists = tags.some(tag =>
-                    tag.range.isEqual(this.activeTag.range)
+                // 尝试找到原始标签对应的新标签
+                const newActiveTag = tags.find(tag =>
+                    tag.name === this.activeTag.name &&
+                    tag.type === this.activeTag.type &&
+                    tag.range.start.line === this.activeTag.range.start.line &&
+                    tag.range.start.character === this.activeTag.range.start.character
                 );
 
-                if (!tagStillExists) {
-                    this.clearActiveTag();
+                if (newActiveTag) {
+                    // 更新标签位置并重新高亮
+                    this.setActiveTag(this.activeEditor, newActiveTag, tags);
                 } else {
-                    this.allTags = tags;
-                    this.updateHighlights();
+                    // 找不到原始标签则清除高亮
+                    this.clearActiveTag();
                 }
             }
         }
@@ -647,11 +635,6 @@ class CommandHandler {
 
         tagDetailPanels.add(panelKey, panel);
     }
-
-    // 清除所有高亮的命令
-    static clearHighlights() {
-        TagHighlighter.clearActiveTag();
-    }
 }
 
 // ======================
@@ -724,7 +707,6 @@ function activate(context) {
         vscode.commands.registerCommand('html-custom-tags.jumpToTag', CommandHandler.jumpToTag),
         vscode.commands.registerCommand('html-custom-tags.showTagDetails', CommandHandler.showTagDetails),
         vscode.commands.registerCommand('html-custom-tags.copyAllTags', CommandHandler.copyAllTags),
-        vscode.commands.registerCommand('html-custom-tags.clearHighlights', CommandHandler.clearHighlights)
     ];
 
     // 注册事件监听器
@@ -748,8 +730,8 @@ function activate(context) {
             );
         }),
         vscode.workspace.onDidChangeTextDocument(e => {
-            // 增量缓存更新
-            TagFinder.updateCache(e.document, e.contentChanges);
+            // 文档变化时清除缓存
+            TagFinder.updateCache(e.document);
             CommandHandler.autoCloseCustomTag(e);
             handleStateUpdate();
 
