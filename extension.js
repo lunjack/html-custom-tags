@@ -110,7 +110,7 @@ class CustomTagItem extends vscode.TreeItem {
         this.tagType = tagType;
 
         const iconPath = vscode.Uri.file(path.join(extensionUri.fsPath, 'icons',
-            tagType === TAG_TYPES.OPENING ? 'start.png' : 'stop.png'));
+            tagType === TAG_TYPES.OPENING ? 'start.png' : 'end.png'));
 
         this.iconPath = {
             light: iconPath,
