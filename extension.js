@@ -3,6 +3,7 @@
 // ======================
 const vscode = require('vscode');
 const { Disposable } = require('vscode');
+const path = require('path');
 
 // ======================
 // 本地模块导入
@@ -11,7 +12,6 @@ const {
     CONFIG_KEYS,
     TEXT_SNIPPET_RANGE,
     TAG_TYPES,
-    TAG_ICONS,
     TAG_DISPLAY_NAMES,
     RECOMMENDED_THEME
 } = require('./modules/constants');
@@ -102,13 +102,20 @@ class ConfigManager {
 // 标签数据模型
 // ======================
 class CustomTagItem extends vscode.TreeItem {
-    constructor(label, realTagName, tagType) {
+    constructor(label, realTagName, tagType, extensionUri) {
         super(label, vscode.TreeItemCollapsibleState.None);
         this.description = TAG_DISPLAY_NAMES[tagType] || '未知标签';
         this.tooltip = `${this.label} - ${this.description}`;
         this.realTagName = realTagName;
         this.tagType = tagType;
-        this.iconPath = new vscode.ThemeIcon(TAG_ICONS[tagType]);
+
+        const iconPath = vscode.Uri.file(path.join(extensionUri.fsPath, 'icons',
+            tagType === TAG_TYPES.OPENING ? 'start.png' : 'stop.png'));
+
+        this.iconPath = {
+            light: iconPath,
+            dark: iconPath
+        };
 
         this.command = {
             command: 'html-custom-tags.jumpToTag',
@@ -310,7 +317,8 @@ class DecorationManager {
 // 标签数据提供器
 // ======================
 class CustomTagProvider {
-    constructor() {
+    constructor(extensionUri) {
+        this.extensionUri = extensionUri;
         this._onDidChangeTreeData = new vscode.EventEmitter();
         this.onDidChangeTreeData = this._onDidChangeTreeData.event;
         this.tags = [];
@@ -332,7 +340,8 @@ class CustomTagProvider {
                 uniqueTags.set(key, new CustomTagItem(
                     `${prefix}${tag.name}]`,
                     tag.name,
-                    tag.type
+                    tag.type,
+                    this.extensionUri
                 ));
             }
         });
@@ -689,7 +698,7 @@ function activate(context) {
     stateManager = new StateManager();
 
     // 创建标签提供器和视图
-    const tagProvider = new CustomTagProvider();
+    const tagProvider = new CustomTagProvider(context.extensionUri);
     const treeView = vscode.window.createTreeView('html-custom-tags-view', {
         treeDataProvider: tagProvider,
         title: '模板标签',

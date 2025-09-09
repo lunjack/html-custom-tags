@@ -18,10 +18,5 @@ module.exports = {
         CLOSING: '闭标签'
     },
 
-    TAG_ICONS: {
-        OPENING: 'symbol-class',
-        CLOSING: 'symbol-method'
-    },
-
     RECOMMENDED_THEME: 'Custom Tags Theme'
 };
