@@ -1,9 +1,10 @@
-# Change Log
+# 变更日志
 
-All notable changes to the "html-custom-tags" extension will be documented in this file.
+## [1.0.160] - 2025-09-13
+### 新增
+- 修改了侧边控制面板开闭标签树开闭图标,使其更加贴切
+- 新增开闭标签标志符颜色区分,开为绿色,闭为红色
+- 新增开闭标签点击时,当前标签背景边框为实线边框,相对标签为虚线边框,并高亮对应背景
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+### 修复
+- 修复了更改文件时,高亮错位的问题
