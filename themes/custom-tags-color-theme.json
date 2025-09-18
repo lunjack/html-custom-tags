@@ -877,6 +877,17 @@
                 "fontStyle": ""
             }
         },
+        // 未使用函数
+        {
+            "name": "通用未使用函数",
+            "scope": [
+                "meta.definition.function"
+            ],
+            "settings": {
+                "foreground": "#9b9b72", // 淡黄色
+                "fontStyle": "strikethrough"
+            }
+        },
         // 函数参数
         {
             "name": "通用函数参数",
