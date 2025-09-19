@@ -1273,28 +1273,5 @@
                 "fontStyle": "italic" // 斜体
             }
         }
-    ],
-    // 未使用
-    "semanticTokenColors": {
-        // 未使用的函数声明 - 灰色文字配合删除线效果
-        "function.declaration.unused": {
-            "foreground": "#9b9b72", // 使用灰绿色调表示未使用状态
-            "fontStyle": "strikethrough" // 添加删除线强调"未使用"的语义
-        },
-        // 未使用的函数调用
-        "function.unused": {
-            "foreground": "#9b9b72",
-            "fontStyle": "strikethrough"
-        },
-        // 未使用的变量声明
-        "variable.declaration.unused": {
-            "foreground": "#9b9b72",
-            "fontStyle": "strikethrough"
-        },
-        // 未使用的变量引用
-        "variable.unused": {
-            "foreground": "#9b9b72",
-            "fontStyle": "strikethrough"
-        }
-    }
+    ]
 }
