@@ -943,6 +943,7 @@
                 "constant.language", // true/false/null
                 "meta.scriptblock.powershell", // powershell常量 如:UTF8
                 "source.powershell", // powershell
+                "keyword.other.definition.ini" // env 常量名
             ],
             "settings": {
                 "foreground": "#7a65cb", // 蓝紫色（与JS常量一致）
@@ -957,6 +958,7 @@
                 "variable.other.normal.shell", // Shell变量
                 "variable.other.php", // PHP变量
                 "variable.other.definition.java", // java 变量名
+                "source.ini" // env 常量值
             ],
             "settings": {
                 "foreground": "#82541c", // 锈棕色（与JS变量一致）
@@ -1029,6 +1031,7 @@
                 "keyword.operator.comparison", // == !=
                 "keyword.operator.logical", // && ||
                 "keyword.operator.assignment", // = +=
+                "punctuation.separator.key-value.ini", // env =
                 "punctuation.definition.list.begin.markdown", // markdown -
                 "keyword.other.special-method.batchfile", // bat off
             ],
