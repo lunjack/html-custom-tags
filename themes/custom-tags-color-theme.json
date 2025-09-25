@@ -958,7 +958,6 @@
                 "variable.other.normal.shell", // Shell变量
                 "variable.other.php", // PHP变量
                 "variable.other.definition.java", // java 变量名
-                "source.ini" // env 常量值
             ],
             "settings": {
                 "foreground": "#82541c", // 锈棕色（与JS变量一致）
@@ -1104,6 +1103,7 @@
                 "string.other.link.description.markdown", // markdown
                 "string.other.link.description.title.markdown", // markdown
                 "text.html.markdown", // Markdown
+                "source.ini" // env 常量值
             ],
             "settings": {
                 "foreground": "#0E639C", // 暗蓝色（与HTML属性一致）
