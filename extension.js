@@ -50,9 +50,7 @@ class ConfigManager {
 
     static saveOriginalSettings() {
         if (!this.originalSettings)
-            this.originalSettings = Object.fromEntries(
-                Object.values(CONFIG_KEYS).map(key => [key, this.config.get(key)])
-            );
+            this.originalSettings = Object.fromEntries(Object.values(CONFIG_KEYS).map(key => [key, this.config.get(key)]));
 
         return this.originalSettings;
     }
@@ -147,8 +145,8 @@ class TagFinder {
                 Math.min(lineText.length, position.character + TEXT_SNIPPET_RANGE)
             );
 
-            return isInsideTagPosition(textAround, position.character, '[!') ||
-                isInsideTagPosition(textAround, position.character, '[~');
+            return isInsideTagPosition(textAround, position.character, '[!')
+                || isInsideTagPosition(textAround, position.character, '[~');
         } catch (error) {
             console.error('检查模板标签位置失败:', error.message);
             return false;
@@ -161,8 +159,7 @@ class TagFinder {
 // ======================
 class DecorationManager {
     constructor() {
-        this.currentDecorations = [];
-        this.correspondingDecorations = [];
+        this.currentDecorations = [], this.correspondingDecorations = [];
 
         // 开标签装饰器
         this.openingDecorationType = vscode.window.createTextEditorDecorationType({
@@ -205,8 +202,7 @@ class DecorationManager {
             editor.setDecorations(this.correspondingOpeningDecorationType, []);
             editor.setDecorations(this.correspondingClosingDecorationType, []);
         }
-        this.currentDecorations = [];
-        this.correspondingDecorations = [];
+        this.currentDecorations = [], this.correspondingDecorations = [];
     }
 
     // 高亮标签和对应标签 - 增加边界检查
@@ -214,35 +210,25 @@ class DecorationManager {
         this.clearAllDecorations(editor);
 
         // 验证标签范围是否有效
-        if (!this.isValidTagPosition(editor.document, tag.range)) {
-            return;
-        }
+        if (!this.isValidTagPosition(editor.document, tag.range)) return;
 
         // 根据标签类型选择装饰器
-        const currentDecorationType = tag.type === TAG_TYPES.OPENING ?
-            this.openingDecorationType : this.closingDecorationType;
+        const currentDecorationType = tag.type === TAG_TYPES.OPENING ? this.openingDecorationType : this.closingDecorationType;
 
         // 高亮当前标签
-        this.currentDecorations.push({
-            range: tag.range
-        });
+        this.currentDecorations.push({ range: tag.range });
         editor.setDecorations(currentDecorationType, this.currentDecorations);
 
         // 查找并高亮对应标签
         const counterpartType = tag.type === TAG_TYPES.OPENING ? TAG_TYPES.CLOSING : TAG_TYPES.OPENING;
-        const counterpartTags = allTags.filter(t =>
-            t.name === tag.name &&
-            t.type === counterpartType
-        );
+        const counterpartTags = allTags.filter(t => t.name === tag.name && t.type === counterpartType);
 
         if (counterpartTags.length > 0) {
             // 根据对应标签的类型选择正确的装饰器
             const counterpartDecorationType = counterpartType === TAG_TYPES.OPENING ?
                 this.correspondingOpeningDecorationType : this.correspondingClosingDecorationType;
 
-            this.correspondingDecorations = counterpartTags.map(t => ({
-                range: t.range
-            }));
+            this.correspondingDecorations = counterpartTags.map(t => ({ range: t.range }));
             editor.setDecorations(counterpartDecorationType, this.correspondingDecorations);
         }
     }
@@ -254,13 +240,9 @@ class DecorationManager {
             if (!range || !range.start || !range.end) return false;
 
             // 检查行号是否在文档范围内
-            if (range.start.line >= document.lineCount ||
-                range.end.line >= document.lineCount) {
-                return false;
-            }
+            if (range.start.line >= document.lineCount || range.end.line >= document.lineCount) return false;
 
             const startLine = document.lineAt(range.start.line), endLine = document.lineAt(range.end.line);
-
             // 检查字符位置是否在行范围内
             return range.start.character <= startLine.text.length && range.end.character <= endLine.text.length;
         } catch (e) {
@@ -314,7 +296,6 @@ class StateManager {
 
     queueUpdate() {
         if (this.debounceTimeout) clearTimeout(this.debounceTimeout);
-
         this.debounceTimeout = setTimeout(() => this.processUpdates(), 150);
     }
 
@@ -392,7 +373,7 @@ class TagHighlighter {
     // 文档变化处理
     static handleDocumentChange(event) {
         if (this.activeEditor && event.document === this.activeEditor.document) {
-            TagFinder.updateCache(event.document); // 清除缓存并重新解析所有标签
+            TagFinder.updateCache(event.document);                                         // 清除缓存并重新解析所有标签
             const tags = TagFinder.findAllCustomTags(event.document);
 
             if (this.activeTag) {
@@ -434,12 +415,11 @@ class CommandHandler {
             const tagName = match[1].trim();
             if (!tagName || lineText.includes(`[~${tagName}]`)) continue;
 
-            editor.edit(editBuilder => {
-                editBuilder.insert(position.translate(0, 1), `[~${tagName}]`);
-            }).then(() => {
-                const newPosition = position.translate(0, 1);
-                editor.selection = new vscode.Selection(newPosition, newPosition);
-            });
+            editor.edit(editBuilder => editBuilder.insert(position.translate(0, 1), `[~${tagName}]`))
+                .then(() => {
+                    const newPosition = position.translate(0, 1);
+                    editor.selection = new vscode.Selection(newPosition, newPosition);
+                });
         }
     }
 
@@ -538,8 +518,7 @@ class CommandHandler {
 // ======================
 class ThemeManager {
     static async checkTheme(context) {
-        const config = vscode.workspace.getConfiguration();
-        const currentTheme = config.get('workbench.colorTheme');
+        const config = vscode.workspace.getConfiguration(), currentTheme = config.get('workbench.colorTheme');
         if (currentTheme === RECOMMENDED_THEME) return;
 
         const disablePrompt = context.globalState.get('disableThemePrompt', false);
@@ -608,7 +587,7 @@ function activate(context) {
         vscode.workspace.onDidChangeTextDocument(e => {
             // 文档变化时清除缓存
             TagFinder.updateCache(e.document), CommandHandler.autoCloseCustomTag(e), handleStateUpdate();
-            TagHighlighter.handleDocumentChange(e); // 文档变化处理
+            TagHighlighter.handleDocumentChange(e);                                // 文档变化处理
         }),
         vscode.window.onDidChangeActiveTextEditor(() => {
             handleStateUpdate();
