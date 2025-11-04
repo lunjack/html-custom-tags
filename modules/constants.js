@@ -1,5 +1,8 @@
 // modules/constants.js
+
 module.exports = {
+    TAG_REGEX: /\[([!~])([^\]\r\n]+)\]/g,
+    OPENING_TAG_REGEX: /\[!([^\]\r\n]+)\]\s*$/,
     CONFIG_KEYS: {
         QUICK_SUGGESTIONS: 'quickSuggestions',
         SUGGEST_ON_TRIGGER: 'suggestOnTriggerCharacters',

@@ -1,7 +1,6 @@
 // modules/tagDetailsTemplate.js
 const vscode = require('vscode');
 const { TAG_TYPES, TAG_DISPLAY_NAMES } = require('./constants');
-
 const { sanitizeTagName } = require('./tagUtils');
 
 module.exports.generateTagDetailsHTML = (tagName, statistics) => {
@@ -115,39 +114,39 @@ module.exports.generateTagDetailsHTML = (tagName, statistics) => {
                 ${sanitizeTagName(`[!${tagName}]`)} / ${sanitizeTagName(`[~${tagName}]`)}
             </div>
         </div>
-        
+
         <div class="stats-container">
              <div class="stat-card">
                 <div>总出现次数</div>
                 <div class="stat-value">${statistics.total}</div>
             </div>
-            
+
             <div class="stat-card">
                 <div>开标签数量</div>
                 <div class="stat-value">${statistics.opening}</div>
             </div>
-            
+
             <div class="stat-card">
                 <div>闭标签数量</div>
                 <div class="stat-value">${statistics.closing}</div>
             </div>
-            
+
             <div class="stat-card ${statistics.unbalanced ? 'unbalanced' : 'balanced'}">
                 <div>标签平衡状态</div>
                 <div class="stat-value">${statistics.unbalanced ? '不平衡' : '平衡'}</div>
             </div>
         </div>
-        
+
         ${statistics.unbalanced ? `
         <div class="warning">
             ⚠ 警告: 此标签不平衡! 开标签(${statistics.opening}) 和 闭标签(${statistics.closing}) 数量不一致
         </div>
         ` : ''}
-        
+
         <div class="locations">
             <h2>出现位置 (共 ${statistics.locations.length} 处)</h2>
             ${statistics.locations.map(loc => `
-                <div class="location-item" 
+                <div class="location-item"
                     data-start-line="${loc.range.start.line}"
                     data-start-char="${loc.range.start.character}"
                     data-end-line="${loc.range.end.line}"
@@ -160,7 +159,7 @@ module.exports.generateTagDetailsHTML = (tagName, statistics) => {
                 </div>
             `).join('')}
         </div>
-        
+
         <script>
             const vscode = acquireVsCodeApi();
             document.querySelectorAll('.location-item').forEach(item => {
