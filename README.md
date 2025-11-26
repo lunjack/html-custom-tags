@@ -10,7 +10,7 @@
 | ------------ | ---------------------------------------------------------------- |
 | 📬 **邮箱**   | [china@lunjack.com](mailto:china@lunjack.com)                    |
 | 📱 **电话**   | [+86 19116417296](tel:+8619116419296)                            |
-| 💬 **微信**   | [lunjack01](https://work.weixin.qq.com/kfid/kfc44c370d4ddbac6f0) |
+| 💬 **微信**   | [-lunjack](https://work.weixin.qq.com/kfid/kfc44c370d4ddbac6f0) |
 | 💴 **支付宝** | 邮箱或手机号都可                                                 |
 </div>
 
