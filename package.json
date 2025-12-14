@@ -152,13 +152,13 @@
   },
   "badges": [
     {
-      "url": "https://img.shields.io/visual-studio-marketplace/v/flunGit.html-custom-tags?color=blue&label=VS%20Marketplace",
+      "url": "https://img.shields.io/visual-studio-marketplace/v/flun.html-custom-tags?color=blue&label=VS%20Marketplace",
       "href": "https://marketplace.visualstudio.com/items?itemName=flunGit.html-custom-tags",
       "description": "Version"
     },
     {
-      "url": "https://img.shields.io/visual-studio-marketplace/i/flunGit.html-custom-tags?label=Installs",
-      "href": "https://marketplace.visualstudio.com/items?itemName=flunGit.html-custom-tags",
+      "url": "https://img.shields.io/visual-studio-marketplace/i/flun.html-custom-tags?label=Installs",
+      "href": "https://marketplace.visualstudio.com/items?itemName=flun.html-custom-tags",
       "description": "Installs"
     }
   ]
