@@ -3,14 +3,14 @@
   "displayName": "HTML Custom Tags Highlighter",
   "description": "Syntax highlighting for custom [!tag][~tag] in HTML files with enhanced bracket coloring. Supports tag navigation, statistics and customization.",
   "version": "1.0.171",
-  "publisher": "lunjack",
+  "publisher": "flun",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lunjack/html-custom-tags.git"
+    "url": "https://github.com/flunGit/html-custom-tags.git"
   },
-  "homepage": "https://github.com/lunjack/html-custom-tags#readme",
+  "homepage": "https://github.com/flunGit/html-custom-tags#readme",
   "bugs": {
-    "url": "https://github.com/lunjack/html-custom-tags/issues"
+    "url": "https://github.com/flunGit/html-custom-tags/issues"
   },
   "engines": {
     "vscode": "^1.89.0"
@@ -152,13 +152,13 @@
   },
   "badges": [
     {
-      "url": "https://img.shields.io/visual-studio-marketplace/v/lunjack.html-custom-tags?color=blue&label=VS%20Marketplace",
-      "href": "https://marketplace.visualstudio.com/items?itemName=lunjack.html-custom-tags",
+      "url": "https://img.shields.io/visual-studio-marketplace/v/flunGit.html-custom-tags?color=blue&label=VS%20Marketplace",
+      "href": "https://marketplace.visualstudio.com/items?itemName=flunGit.html-custom-tags",
       "description": "Version"
     },
     {
-      "url": "https://img.shields.io/visual-studio-marketplace/i/lunjack.html-custom-tags?label=Installs",
-      "href": "https://marketplace.visualstudio.com/items?itemName=lunjack.html-custom-tags",
+      "url": "https://img.shields.io/visual-studio-marketplace/i/flunGit.html-custom-tags?label=Installs",
+      "href": "https://marketplace.visualstudio.com/items?itemName=flunGit.html-custom-tags",
       "description": "Installs"
     }
   ]
