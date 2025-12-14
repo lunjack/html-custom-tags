@@ -4,7 +4,7 @@
     "comments": "off",
     "strings": "off"
   },
-  "workbench.colorTheme": "Default Dark Modern",
+  "workbench.colorTheme": "Custom Tags Theme",
   "editor.suggestOnTriggerCharacters": false,
   "files.associations": {
     "*.html": "html"
