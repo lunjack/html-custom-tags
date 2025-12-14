@@ -153,7 +153,7 @@
   "badges": [
     {
       "url": "https://img.shields.io/visual-studio-marketplace/v/flun.html-custom-tags?color=blue&label=VS%20Marketplace",
-      "href": "https://marketplace.visualstudio.com/items?itemName=flunGit.html-custom-tags",
+      "href": "https://marketplace.visualstudio.com/items?itemName=flun.html-custom-tags",
       "description": "Version"
     },
     {
