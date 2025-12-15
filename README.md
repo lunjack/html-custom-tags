@@ -24,10 +24,10 @@
 >
 bash
 ```PowerShell
-	npm init -y			# 初始化项目
-	npm i lunjack-html-template # 本地
+	npm init -y				    # 初始化项目
+	npm i flun-html-template    # 本地
 	# 或
-	npm i -g lunjack-html-template # 全局
+	npm i -g flun-html-template # 全局
 # 注意：请最好使用空项目执行此操作(新用户的话)
 ```
 >   ### 本模板npm包优点是:拿来即用,你只需专注于自己的项目逻辑,其它交给包处理;
