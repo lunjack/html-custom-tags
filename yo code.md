@@ -199,7 +199,7 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
         @"
         MIT License
 
-        Copyright (c) $(Get-Date -Format yyyy) lunjack
+        Copyright (c) $(Get-Date -Format yyyy) flun
 
         Permission is hereby granted, free of charge, to any person obtaining a copy
         ...
@@ -214,7 +214,7 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
         点击 Create Token
         Organization（组织）: china0826
 > >2. 设置名称
-        lunjack-VSCE-Token    有效期建议选 1年。
+        lunjack-VSCE-Token    有效期最长90天;
 > >3. 权限范围勾选 Marketplace 选择全部:
         >>>- ☑️ Marketplace（市场）> Acquire（获取权限）
         >>>- ☑️ Marketplace（市场）> Manage（管理权限）
@@ -275,7 +275,7 @@ gh repo create 仓库名 --public --push --source .      # 创建远程仓库并
 >
 
 ```PowerShell
-        git remote add origin https://github.com/lunjack/html-custom-tags.git
+        git remote add origin https://github.com/flunGit/html-custom-tags.git
 
         git push -u origin main --force
 ```

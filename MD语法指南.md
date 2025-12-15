@@ -73,9 +73,9 @@
 
 &nbsp; &nbsp; &nbsp;适合在文档中多次使用同一个链接。
 
- - [引用链接][lunjack测试]
+ - [引用链接][flun测试]
 
-[lunjack测试]: https://www.google.com "这是引用链接测试"
+[flun测试]: https://www.google.com "这是引用链接测试"
 
 ---
 ### 图片
