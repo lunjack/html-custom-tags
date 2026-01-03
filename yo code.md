@@ -100,11 +100,11 @@ vsce publish 1.0.3     # 发布指定版本
 ### 13.自定义脚本打包/安装/发布扩展(PowerShell)
 
 ```PowerShell
-.\package.ps1 -Action package       # 打包
+.\package.ps1        # 打包
 
-.\setup.ps1                         # 安装
+.\setup.ps1          # 安装
 
-.\publish.ps1                       # 发布
+.\publish.ps1        # 发布
 ```
 
 ---
