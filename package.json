@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "html-custom-tags",
   "displayName": "HTML Custom Tags Highlighter",
   "description": "Syntax highlighting for custom [!tag][~tag] in HTML files with enhanced bracket coloring. Supports tag navigation, statistics and customization.",
@@ -104,7 +104,7 @@
       "view/title": [
         {
           "command": "html-custom-tags.copyAllTags",
-          "when": "view == html-custom-tags-view && showCustomTagsView",
+          "when": "view == html-custom-tags-view \u0026\u0026 showCustomTagsView",
           "group": "navigation",
           "icon": "$(copy)"
         }
@@ -112,7 +112,7 @@
       "view/item/context": [
         {
           "command": "html-custom-tags.showTagDetails",
-          "when": "view == html-custom-tags-view && viewItem != undefined",
+          "when": "view == html-custom-tags-view \u0026\u0026 viewItem != undefined",
           "group": "inline",
           "args": [
             "${selectedItem}"
@@ -142,8 +142,8 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "echo '编译完成'",
-    "watch": "echo '监听模式中...'"
+    "compile": "echo \u0027编译完成\u0027",
+    "watch": "echo \u0027监听模式中...\u0027"
   },
   "icon": "icons/extension-icon.png",
   "galleryBanner": {
@@ -152,7 +152,7 @@
   },
   "badges": [
     {
-      "url": "https://img.shields.io/visual-studio-marketplace/v/flun.html-custom-tags?color=blue&label=VS%20Marketplace",
+      "url": "https://img.shields.io/visual-studio-marketplace/v/flun.html-custom-tags?color=blue\u0026label=VS%20Marketplace",
       "href": "https://marketplace.visualstudio.com/items?itemName=flun.html-custom-tags",
       "description": "Version"
     },
