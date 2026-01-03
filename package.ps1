@@ -18,7 +18,7 @@ function Invoke-Package {
     }
 
     # 打包扩展
-    Package-Extension
+    New-ExtensionPackage
 }
 
 # 检查 JSON 格式
@@ -26,7 +26,8 @@ function Test-JsonFormat {
     try {
         $null = Get-Content "package.json" -Raw | ConvertFrom-Json
         return $true
-    } catch {
+    }
+    catch {
         return $false
     }
 }
@@ -59,9 +60,9 @@ function Update-Version {
 }
 
 # 打包扩展
-function Package-Extension {
+function New-ExtensionPackage {
     # 创建必要文件
-    Ensure-Readme
+    Initialize-Readme
 
     # 获取扩展信息
     $package = Get-Content "package.json" -Raw | ConvertFrom-Json
@@ -83,8 +84,8 @@ function Package-Extension {
     Move-VsixFile $package.name
 }
 
-# 创建 README（如果不存在）
-function Ensure-Readme {
+# 创建 README
+function Initialize-Readme {
     if (Test-Path README.md) { return }
 
     $package = Get-Content "package.json" -Raw | ConvertFrom-Json
@@ -101,7 +102,10 @@ $($package.description)
 
 # 移动 VSIX 文件
 function Move-VsixFile($extensionName) {
-    $vsixFile = Get-ChildItem "$extensionName-*.vsix" | Sort LastWriteTime -Desc | Select -First 1
+    # 使用完整命令而非别名
+    $vsixFile = Get-ChildItem "$extensionName-*.vsix" |
+    Sort-Object LastWriteTime -Descending |
+    Select-Object -First 1
 
     if (-not $vsixFile) {
         Write-Host "✗ 未找到 VSIX 文件" -ForegroundColor Red
@@ -119,6 +123,7 @@ function Move-VsixFile($extensionName) {
 # 执行主函数
 if ($Action -eq "package") {
     Invoke-Package
-} else {
+}
+else {
     Write-Host "使用方法: .\package.ps1 -Action package" -ForegroundColor Yellow
 }
