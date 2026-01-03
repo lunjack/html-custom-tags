@@ -214,7 +214,7 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
         点击 Create Token
         Organization（组织）: china0826
 > >2. 设置名称
-        lunjack-VSCE-Token    有效期最长90天;
+        flun-VScode-Tag    有效期最长1年;
 > >3. 权限范围勾选 Marketplace 选择全部:
         >>>- ☑️ Marketplace（市场）> Acquire（获取权限）
         >>>- ☑️ Marketplace（市场）> Manage（管理权限）
